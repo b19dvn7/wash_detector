@@ -657,6 +657,18 @@ def _spoofing_alerts(
 
             risk = scfg.base_risk_points
 
+            # Bonus for very high one-sided pressure (strong manipulation signal)
+            if avg_pressure >= 0.85:
+                risk += 5
+            elif avg_pressure >= 0.75:
+                risk += 3
+
+            # Bonus for extreme depth swings (large fake liquidity)
+            if depth_5_swing >= 1.75:
+                risk += 3
+            elif depth_5_swing >= 1.5:
+                risk += 2
+
             # Bonus for spread compression (fake tightening)
             if max_compression >= scfg.spread_compression_threshold:
                 risk += scfg.compression_bonus
