@@ -894,21 +894,138 @@ def _spoofing_alerts(
     return alerts
 
 
+def _compute_orderbook_churn_metrics(
+    snapshots: List[tuple[int, List[List[float]], List[List[float]]]],
+    top_k_levels: int = 5,
+) -> dict:
+    """
+    Compute orderbook churn metrics from successive snapshots.
+
+    Args:
+        snapshots: [(timestamp_ms, bids, asks), ...] ordered by time
+        top_k_levels: Number of top levels to analyze for churn
+
+    Returns:
+        {
+            'snapshot_rate': snapshots per second,
+            'top_k_size_change': sum of |size_t - size_{t-1}| across levels,
+            'top_of_book_flips': count of best bid/ask price changes,
+            'depth_volatility_1bps': std dev of near-touch depth (1 bps),
+        }
+    """
+    if len(snapshots) < 2:
+        return {
+            'snapshot_rate': 0.0,
+            'top_k_size_change': 0.0,
+            'top_of_book_flips': 0,
+            'depth_volatility_1bps': 0.0,
+        }
+
+    # Snapshot rate
+    duration_sec = (snapshots[-1][0] - snapshots[0][0]) / 1000.0
+    snapshot_rate = len(snapshots) / duration_sec if duration_sec > 0 else 0.0
+
+    # Top-K level size change (churn)
+    total_size_change = 0.0
+    top_of_book_flips = 0
+    prev_best_bid = None
+    prev_best_ask = None
+
+    for i in range(1, len(snapshots)):
+        prev_ts, prev_bids, prev_asks = snapshots[i - 1]
+        curr_ts, curr_bids, curr_asks = snapshots[i]
+
+        # Extract top K levels
+        prev_bid_levels = {price: size for price, size in prev_bids[:top_k_levels]}
+        curr_bid_levels = {price: size for price, size in curr_bids[:top_k_levels]}
+
+        prev_ask_levels = {price: size for price, size in prev_asks[:top_k_levels]}
+        curr_ask_levels = {price: size for price, size in curr_asks[:top_k_levels]}
+
+        # Size change: sum |size_t - size_{t-1}| for all levels
+        all_bid_prices = set(prev_bid_levels.keys()) | set(curr_bid_levels.keys())
+        for price in all_bid_prices:
+            prev_size = prev_bid_levels.get(price, 0.0)
+            curr_size = curr_bid_levels.get(price, 0.0)
+            total_size_change += abs(curr_size - prev_size)
+
+        all_ask_prices = set(prev_ask_levels.keys()) | set(curr_ask_levels.keys())
+        for price in all_ask_prices:
+            prev_size = prev_ask_levels.get(price, 0.0)
+            curr_size = curr_ask_levels.get(price, 0.0)
+            total_size_change += abs(curr_size - prev_size)
+
+        # Top-of-book flip detection
+        if prev_bids and curr_bids:
+            curr_best_bid = curr_bids[0][0]
+            if prev_best_bid is not None and curr_best_bid != prev_best_bid:
+                top_of_book_flips += 1
+            prev_best_bid = curr_best_bid
+
+        if prev_asks and curr_asks:
+            curr_best_ask = curr_asks[0][0]
+            if prev_best_ask is not None and curr_best_ask != prev_best_ask:
+                top_of_book_flips += 1
+            prev_best_ask = curr_best_ask
+
+    # Depth volatility at 1 bps
+    depth_1bps_samples = []
+    for ts, bids, asks in snapshots:
+        bid_depth, ask_depth, _ = _compute_near_touch_depth(bids, asks, bps_window=1.0)
+        depth_1bps_samples.append(bid_depth + ask_depth)
+
+    if depth_1bps_samples:
+        import statistics
+        depth_volatility_1bps = statistics.stdev(depth_1bps_samples) if len(depth_1bps_samples) > 1 else 0.0
+    else:
+        depth_volatility_1bps = 0.0
+
+    return {
+        'snapshot_rate': snapshot_rate,
+        'top_k_size_change': total_size_change,
+        'top_of_book_flips': top_of_book_flips,
+        'depth_volatility_1bps': depth_volatility_1bps,
+    }
+
+
 def _quote_stuffing_alerts(
     trades: Sequence[TradeRow],
     cfg: DetectorConfig,
+    normalized_db_path: str | Path,
 ) -> List[Alert]:
     """
-    Detect quote stuffing patterns via high-frequency churning.
+    Detect quote stuffing patterns via high-frequency orderbook churning.
 
-    Monitors for abnormal trade clustering with minimal price movement,
-    indicating market manipulation through latency/confusion.
+    Monitors for abnormal orderbook update rates with minimal price movement,
+    indicating market manipulation through message spam / latency attacks.
+
+    Enhanced with orderbook churn metrics: snapshot rate, add/cancel volume,
+    top-of-book flip rate, and depth volatility.
     """
     alerts: List[Alert] = []
     qscfg = cfg.quote_stuffing
 
     if len(trades) < 2:
         return alerts
+
+    # Get source tablet DB path for orderbook data
+    import sqlite3
+    conn = sqlite3.connect(normalized_db_path)
+    try:
+        source_db_row = conn.execute("SELECT value FROM ingest_meta WHERE key = 'source_db'").fetchone()
+        if not source_db_row:
+            source_db_path = None
+        else:
+            source_db_path = source_db_row[0]
+    finally:
+        conn.close()
+
+    # Pre-load all orderbook snapshots for efficiency
+    orderbook_snapshots_list = []  # List of (ts, bids, asks) for chronological processing
+    if source_db_path and Path(source_db_path).exists():
+        min_ts = trades[0].timestamp_ms
+        max_ts = trades[-1].timestamp_ms
+        orderbook_snapshots_list = _load_orderbook_snapshots(source_db_path, min_ts, max_ts)
 
     left = 0
     cooldown_until = -1
@@ -959,7 +1076,48 @@ def _quote_stuffing_alerts(
         else:
             continue  # Need liquidity quality signal
 
+        # Enhanced gate: compute orderbook churn metrics
+        churn_metrics = {}
+        if orderbook_snapshots_list:
+            window_start_ms = window[0].timestamp_ms
+            window_end_ms = window[-1].timestamp_ms
+
+            # Get snapshots within window
+            window_snapshots = [
+                (ts, bids, asks)
+                for ts, bids, asks in orderbook_snapshots_list
+                if window_start_ms <= ts <= window_end_ms
+            ]
+
+            if window_snapshots:
+                churn_metrics = _compute_orderbook_churn_metrics(window_snapshots, top_k_levels=5)
+
+                # Quote stuffing fingerprint: high orderbook update rate + churn
+                # Note: Orderbook snapshots are ~0.4/sec avg, so we look for relative spikes
+                # Require: snapshot_rate > 0.6/sec (above normal rate)
+                #      OR: top_k_size_change > 50 (heavy add/cancel activity despite low snapshot rate)
+                snapshot_rate = churn_metrics.get('snapshot_rate', 0.0)
+                size_change = churn_metrics.get('top_k_size_change', 0.0)
+
+                # Gate: need orderbook churn spike OR heavy size changes
+                if snapshot_rate < 0.6 and size_change < 50.0:
+                    continue  # Normal churn - not quote stuffing
+            else:
+                # No orderbook snapshots in window - can't confirm quote stuffing
+                continue
+        else:
+            # No orderbook data available - skip quote stuffing detection
+            continue
+
         risk = qscfg.base_risk_points
+
+        # Bonus for high orderbook churn (message spam)
+        if churn_metrics:
+            snapshot_rate = churn_metrics.get('snapshot_rate', 0.0)
+            if snapshot_rate >= 5.0:
+                risk += 3
+            elif snapshot_rate >= 3.0:
+                risk += 2
 
         # Bonus for extremely low volatility (churning without movement)
         if avg_realized_vol is not None and avg_realized_vol < qscfg.max_realized_volatility / 2:
@@ -980,6 +1138,10 @@ def _quote_stuffing_alerts(
                     "avg_realized_volatility": None if avg_realized_vol is None else round(avg_realized_vol, 8),
                     "avg_liquidity_quality": None if avg_liquidity_quality is None else round(avg_liquidity_quality, 6),
                     "avg_micro_trade_intensity": None if avg_micro_intensity is None else round(avg_micro_intensity, 2),
+                    "orderbook_snapshot_rate": round(churn_metrics.get('snapshot_rate', 0.0), 2) if churn_metrics else None,
+                    "orderbook_size_change": round(churn_metrics.get('top_k_size_change', 0.0), 2) if churn_metrics else None,
+                    "top_of_book_flips": churn_metrics.get('top_of_book_flips', 0) if churn_metrics else None,
+                    "depth_volatility_1bps": round(churn_metrics.get('depth_volatility_1bps', 0.0), 2) if churn_metrics else None,
                 },
             )
         )
@@ -1016,7 +1178,7 @@ def detect_suspicious_patterns(
     report.alerts.extend(_mirror_reversal_alerts(trades, config))
     report.alerts.extend(_layering_cluster_alerts(trades, config))
     report.alerts.extend(_spoofing_alerts(trades, config, normalized_db_path))
-    report.alerts.extend(_quote_stuffing_alerts(trades, config))
+    report.alerts.extend(_quote_stuffing_alerts(trades, config, normalized_db_path))
     report.alerts.extend(_balanced_churn_alerts(trades, config))
 
     report.alerts.sort(key=lambda a: (a.timestamp_ms, a.detector))
