@@ -1,0 +1,13 @@
+Real batch run report
+  data_dir: /home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA
+  run_dir: /home/bigdan7/Projects/wash_detector/artifacts/batch_recent3
+  generated_at_utc: 2026-02-12T04:11:28.319322+00:00
+  total_files: 3
+  processed_files: 3
+  pass_count: 2
+  fail_count: 1
+  day_results:
+    - btcusdt_20260206.db: FAIL | rows 0->0 | alerts 0 | risk 0 UNKNOWN | norm:kept
+      reason: SQLite read error while validating schema: database disk image is malformed
+    - btcusdt_20260205.db: PASS | rows 625923->625923 | alerts 4681 | risk 80 CRITICAL | norm:dropped
+    - btcusdt_20260204.db: PASS | rows 498426->498426 | alerts 3859 | risk 84 CRITICAL | norm:dropped

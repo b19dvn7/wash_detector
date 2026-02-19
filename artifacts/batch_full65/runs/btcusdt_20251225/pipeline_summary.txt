@@ -1,0 +1,18 @@
+Pipeline report
+  source_db: /home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA/btcusdt_20251225.db
+  run_dir: /home/bigdan7/Projects/wash_detector/artifacts/batch_full65/runs/btcusdt_20251225
+  normalized_db: /home/bigdan7/Projects/wash_detector/artifacts/batch_full65/runs/btcusdt_20251225/normalized.db
+  detection_json: /home/bigdan7/Projects/wash_detector/artifacts/batch_full65/runs/btcusdt_20251225/detection_report.json
+  generated_at_utc: 2026-02-14T22:05:19.476209+00:00
+  status: PASS
+  ingest:
+    - schema: PASS
+    - input_rows: 277808
+    - output_rows: 277808
+    - skipped_rows: 0
+    - warning_count: 0
+  detection:
+    - analyzed_rows: 277808
+    - alert_count: 2527
+    - risk_score: 92
+    - risk_level: CRITICAL

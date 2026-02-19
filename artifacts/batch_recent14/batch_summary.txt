@@ -1,0 +1,24 @@
+Real batch run report
+  data_dir: /home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA
+  run_dir: /home/bigdan7/Projects/wash_detector/artifacts/batch_recent14
+  generated_at_utc: 2026-02-12T04:35:55.933164+00:00
+  total_files: 14
+  processed_files: 14
+  pass_count: 13
+  fail_count: 1
+  day_results:
+    - btcusdt_20260206.db: FAIL | rows 0->0 | alerts 0 | risk 0 UNKNOWN | norm:kept
+      reason: SQLite read error while validating schema: database disk image is malformed
+    - btcusdt_20260205.db: PASS | rows 625923->625923 | alerts 4681 | risk 80 CRITICAL | norm:dropped
+    - btcusdt_20260204.db: PASS | rows 498426->498426 | alerts 3859 | risk 84 CRITICAL | norm:dropped
+    - btcusdt_20260203.db: PASS | rows 422777->422777 | alerts 2813 | risk 80 CRITICAL | norm:dropped
+    - btcusdt_20260202.db: PASS | rows 466869->466869 | alerts 3051 | risk 79 CRITICAL | norm:dropped
+    - btcusdt_20260201.db: PASS | rows 459394->459394 | alerts 3183 | risk 82 CRITICAL | norm:dropped
+    - btcusdt_20260131.db: PASS | rows 436348->436348 | alerts 3137 | risk 86 CRITICAL | norm:dropped
+    - btcusdt_20260130.db: PASS | rows 403889->403889 | alerts 2681 | risk 82 CRITICAL | norm:dropped
+    - btcusdt_20260129.db: PASS | rows 362605->362605 | alerts 2832 | risk 89 CRITICAL | norm:dropped
+    - btcusdt_20260128.db: PASS | rows 343678->343678 | alerts 2081 | risk 78 CRITICAL | norm:dropped
+    - btcusdt_20260127.db: PASS | rows 270291->270291 | alerts 2048 | risk 86 CRITICAL | norm:dropped
+    - btcusdt_20260126.db: PASS | rows 266474->266474 | alerts 2093 | risk 88 CRITICAL | norm:dropped
+    - btcusdt_20260125.db: PASS | rows 289806->289806 | alerts 2607 | risk 90 CRITICAL | norm:dropped
+    - btcusdt_20260124.db: PASS | rows 131052->131052 | alerts 2332 | risk 100 CRITICAL | norm:dropped

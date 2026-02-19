@@ -1,0 +1,491 @@
+{
+  "normalized_db": "/home/bigdan7/Projects/wash_detector/artifacts/validation_baseline/normalized.db",
+  "generated_at_utc": "2026-02-12T03:00:34.699164+00:00",
+  "analyzed_rows": 300,
+  "alert_count": 30,
+  "risk_score": 100,
+  "risk_level": "CRITICAL",
+  "warnings": [],
+  "alerts": [
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707607505000,
+      "timestamp_iso": "2024-02-10T23:25:05+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 242,
+        "trade_id_prev": 241,
+        "trade_id_curr": 242,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.021132,
+        "price_diff_bps": 1.823099,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707607810000,
+      "timestamp_iso": "2024-02-10T23:30:10+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 244,
+        "trade_id_prev": 243,
+        "trade_id_curr": 244,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.022172,
+        "price_diff_bps": 0.258031,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707608115000,
+      "timestamp_iso": "2024-02-10T23:35:15+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 246,
+        "trade_id_prev": 245,
+        "trade_id_curr": 246,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.007477,
+        "price_diff_bps": 1.331789,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707608420000,
+      "timestamp_iso": "2024-02-10T23:40:20+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 248,
+        "trade_id_prev": 247,
+        "trade_id_curr": 248,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.022431,
+        "price_diff_bps": 0.341217,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707608725000,
+      "timestamp_iso": "2024-02-10T23:45:25+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 250,
+        "trade_id_prev": 249,
+        "trade_id_curr": 250,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.01664,
+        "price_diff_bps": 0.574804,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707609030000,
+      "timestamp_iso": "2024-02-10T23:50:30+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 252,
+        "trade_id_prev": 251,
+        "trade_id_curr": 252,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.009694,
+        "price_diff_bps": 0.908806,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707609335000,
+      "timestamp_iso": "2024-02-10T23:55:35+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 254,
+        "trade_id_prev": 253,
+        "trade_id_curr": 254,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.028271,
+        "price_diff_bps": 0.803585,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707609640000,
+      "timestamp_iso": "2024-02-11T00:00:40+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 256,
+        "trade_id_prev": 255,
+        "trade_id_curr": 256,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.007819,
+        "price_diff_bps": 1.574067,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707609945000,
+      "timestamp_iso": "2024-02-11T00:05:45+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 258,
+        "trade_id_prev": 257,
+        "trade_id_curr": 258,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.021883,
+        "price_diff_bps": 0.37423,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707610250000,
+      "timestamp_iso": "2024-02-11T00:10:50+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 260,
+        "trade_id_prev": 259,
+        "trade_id_curr": 260,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.001519,
+        "price_diff_bps": 0.8427,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707610555000,
+      "timestamp_iso": "2024-02-11T00:15:55+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 262,
+        "trade_id_prev": 261,
+        "trade_id_curr": 262,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.025125,
+        "price_diff_bps": 1.359055,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707610860000,
+      "timestamp_iso": "2024-02-11T00:21:00+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 264,
+        "trade_id_prev": 263,
+        "trade_id_curr": 264,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.002148,
+        "price_diff_bps": 0.354164,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707611165000,
+      "timestamp_iso": "2024-02-11T00:26:05+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 266,
+        "trade_id_prev": 265,
+        "trade_id_curr": 266,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.027567,
+        "price_diff_bps": 0.130152,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707611470000,
+      "timestamp_iso": "2024-02-11T00:31:10+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 268,
+        "trade_id_prev": 267,
+        "trade_id_curr": 268,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.025915,
+        "price_diff_bps": 0.961488,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707611775000,
+      "timestamp_iso": "2024-02-11T00:36:15+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 270,
+        "trade_id_prev": 269,
+        "trade_id_curr": 270,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.014085,
+        "price_diff_bps": 1.858372,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707612080000,
+      "timestamp_iso": "2024-02-11T00:41:20+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 272,
+        "trade_id_prev": 271,
+        "trade_id_curr": 272,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.012782,
+        "price_diff_bps": 1.231344,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707612385000,
+      "timestamp_iso": "2024-02-11T00:46:25+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 274,
+        "trade_id_prev": 273,
+        "trade_id_curr": 274,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.002032,
+        "price_diff_bps": 1.959159,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707612690000,
+      "timestamp_iso": "2024-02-11T00:51:30+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 276,
+        "trade_id_prev": 275,
+        "trade_id_curr": 276,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.02045,
+        "price_diff_bps": 1.969294,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707612995000,
+      "timestamp_iso": "2024-02-11T00:56:35+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 278,
+        "trade_id_prev": 277,
+        "trade_id_curr": 278,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.005483,
+        "price_diff_bps": 0.960853,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707613300000,
+      "timestamp_iso": "2024-02-11T01:01:40+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 280,
+        "trade_id_prev": 279,
+        "trade_id_curr": 280,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.016326,
+        "price_diff_bps": 0.054894,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707613605000,
+      "timestamp_iso": "2024-02-11T01:06:45+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 282,
+        "trade_id_prev": 281,
+        "trade_id_curr": 282,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.012949,
+        "price_diff_bps": 0.397639,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707613910000,
+      "timestamp_iso": "2024-02-11T01:11:50+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 284,
+        "trade_id_prev": 283,
+        "trade_id_curr": 284,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.024424,
+        "price_diff_bps": 0.351427,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707614215000,
+      "timestamp_iso": "2024-02-11T01:16:55+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 286,
+        "trade_id_prev": 285,
+        "trade_id_curr": 286,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.027009,
+        "price_diff_bps": 1.238004,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707614520000,
+      "timestamp_iso": "2024-02-11T01:22:00+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 288,
+        "trade_id_prev": 287,
+        "trade_id_curr": 288,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.00623,
+        "price_diff_bps": 1.568089,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707614825000,
+      "timestamp_iso": "2024-02-11T01:27:05+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 290,
+        "trade_id_prev": 289,
+        "trade_id_curr": 290,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.017402,
+        "price_diff_bps": 1.675432,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707615130000,
+      "timestamp_iso": "2024-02-11T01:32:10+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 292,
+        "trade_id_prev": 291,
+        "trade_id_curr": 292,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.001864,
+        "price_diff_bps": 0.953049,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707615435000,
+      "timestamp_iso": "2024-02-11T01:37:15+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 294,
+        "trade_id_prev": 293,
+        "trade_id_curr": 294,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.028493,
+        "price_diff_bps": 1.577924,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707615740000,
+      "timestamp_iso": "2024-02-11T01:42:20+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 296,
+        "trade_id_prev": 295,
+        "trade_id_curr": 296,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.014516,
+        "price_diff_bps": 1.834447,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707616045000,
+      "timestamp_iso": "2024-02-11T01:47:25+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 298,
+        "trade_id_prev": 297,
+        "trade_id_curr": 298,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.028847,
+        "price_diff_bps": 1.893397,
+        "volatility_bps": 4.0
+      }
+    },
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707616350000,
+      "timestamp_iso": "2024-02-11T01:52:30+00:00",
+      "risk_points": 15,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 300,
+        "trade_id_prev": 299,
+        "trade_id_curr": 300,
+        "delta_ms": 5000,
+        "amount_gap_ratio": 0.018764,
+        "price_diff_bps": 1.522208,
+        "volatility_bps": 4.0
+      }
+    }
+  ]
+}

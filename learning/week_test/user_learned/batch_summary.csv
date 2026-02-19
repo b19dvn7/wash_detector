@@ -1,0 +1,8 @@
+db_file,day,status,schema_passed,reason,run_dir,input_rows,output_rows,skipped_rows,alert_count,risk_score,risk_level,normalized_kept
+btcusdt_20260206_recovered_20260216_032127_v3.db,,PASS,True,,learning/week_test/user_learned/runs/btcusdt_20260206_recovered_20260216_032127_v3,479849,479849,0,3714,85,CRITICAL,False
+btcusdt_20260206_recovered_20260216_031326_v2.db,,FAIL,False,Missing required table: trades; Missing required table: candles,,0,0,0,0,0,UNKNOWN,True
+btcusdt_20260206_recovered_20260216_030929.db,,FAIL,False,SQLite read error while validating schema: file is not a database,,0,0,0,0,0,UNKNOWN,True
+btcusdt_20260206_recovered.db,,FAIL,False,Missing required table: trades; Missing required table: candles,,0,0,0,0,0,UNKNOWN,True
+btcusdt_20260206_attached_copy.db,,FAIL,False,Missing required table: trades; Missing required table: candles,,0,0,0,0,0,UNKNOWN,True
+btcusdt_20260205.db,20260205,PASS,True,,learning/week_test/user_learned/runs/btcusdt_20260205,625923,625923,0,5665,82,CRITICAL,False
+btcusdt_20260204.db,20260204,PASS,True,,learning/week_test/user_learned/runs/btcusdt_20260204,498426,498426,0,6189,90,CRITICAL,False

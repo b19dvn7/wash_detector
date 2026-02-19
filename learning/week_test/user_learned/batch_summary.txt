@@ -1,0 +1,20 @@
+Real batch run report
+  data_dir: /home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA
+  run_dir: learning/week_test/user_learned
+  generated_at_utc: 2026-02-17T23:30:12.722006+00:00
+  total_files: 69
+  processed_files: 7
+  pass_count: 3
+  fail_count: 4
+  day_results:
+    - btcusdt_20260206_recovered_20260216_032127_v3.db: PASS | rows 479849->479849 | alerts 3714 | risk 85 CRITICAL | norm:dropped
+    - btcusdt_20260206_recovered_20260216_031326_v2.db: FAIL | rows 0->0 | alerts 0 | risk 0 UNKNOWN | norm:kept
+      reason: Missing required table: trades; Missing required table: candles
+    - btcusdt_20260206_recovered_20260216_030929.db: FAIL | rows 0->0 | alerts 0 | risk 0 UNKNOWN | norm:kept
+      reason: SQLite read error while validating schema: file is not a database
+    - btcusdt_20260206_recovered.db: FAIL | rows 0->0 | alerts 0 | risk 0 UNKNOWN | norm:kept
+      reason: Missing required table: trades; Missing required table: candles
+    - btcusdt_20260206_attached_copy.db: FAIL | rows 0->0 | alerts 0 | risk 0 UNKNOWN | norm:kept
+      reason: Missing required table: trades; Missing required table: candles
+    - btcusdt_20260205.db: PASS | rows 625923->625923 | alerts 5665 | risk 82 CRITICAL | norm:dropped
+    - btcusdt_20260204.db: PASS | rows 498426->498426 | alerts 6189 | risk 90 CRITICAL | norm:dropped

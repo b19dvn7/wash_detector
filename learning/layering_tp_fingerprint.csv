@@ -1,0 +1,7 @@
+event_id,timestamp_iso_utc,timestamp_ms,day,detector,pair_id,auto_label,confidence,reason,delta_ms,amount_gap_pct,price_diff_bps,trades_apart,window_seconds,imbalance_ratio,notional_usd,price_move_bps,is_partial_window,price_range_bps
+1767410468407_layering_cluster_365019,2026-01-03T03:21:08.407000+00:00,1767410468407,Jan-1-31,layering_cluster,365019,TP,0.65,Borderline but significant clustering: 10 trades at 0.266bps,,,,,45.065,,,,,0.265917
+1767461392841_layering_cluster_124372,2026-01-03T17:29:52.841000+00:00,1767461392841,Jan-1-31,layering_cluster,124372,TP,0.65,Borderline but significant clustering: 17 trades at 0.266bps,,,,,58.698,,,,,0.266471
+1768016255618_layering_cluster_245206,2026-01-10T03:37:35.618000+00:00,1768016255618,Jan-1-31,layering_cluster,245206,TP,0.65,Borderline but significant clustering: 19 trades at 0.210bps,,,,,51.698,,,,,0.209687
+1768616654071_layering_cluster_279546,2026-01-17T02:24:14.071000+00:00,1768616654071,Jan-1-31,layering_cluster,279546,TP,0.7,Suspicious: dense cluster of 16 trades,,,,,59.541,,,,,0.157453
+1768766252393_layering_cluster_111840,2026-01-18T19:57:32.393000+00:00,1768766252393,Jan-1-31,layering_cluster,111840,TP,0.65,Borderline but significant clustering: 20 trades at 0.231bps,,,,,59.604,,,,,0.230678
+1769284713027_layering_cluster_88605,2026-01-24T19:58:33.027000+00:00,1769284713027,Jan-1-31,layering_cluster,88605,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,57.914,,,,,0.111954

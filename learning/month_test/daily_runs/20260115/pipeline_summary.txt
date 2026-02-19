@@ -1,0 +1,18 @@
+Pipeline report
+  source_db: /home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA/btcusdt_20260115.db
+  run_dir: learning/month_test/daily_runs/20260115
+  normalized_db: learning/month_test/daily_runs/20260115/normalized.db
+  detection_json: learning/month_test/daily_runs/20260115/detection_report.json
+  generated_at_utc: 2026-02-17T23:59:26.946685+00:00
+  status: PASS
+  ingest:
+    - schema: PASS
+    - input_rows: 401336
+    - output_rows: 401336
+    - skipped_rows: 0
+    - warning_count: 0
+  detection:
+    - analyzed_rows: 401336
+    - alert_count: 9869
+    - risk_score: 95
+    - risk_level: CRITICAL

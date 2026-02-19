@@ -1,0 +1,15 @@
+db_file,day,status,schema_passed,reason,run_dir,input_rows,output_rows,skipped_rows,alert_count,risk_score,risk_level,normalized_kept
+btcusdt_20260206.db,20260206,FAIL,False,SQLite read error while validating schema: database disk image is malformed,,0,0,0,0,0,UNKNOWN,True
+btcusdt_20260205.db,20260205,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260205,625923,625923,0,4681,80,CRITICAL,False
+btcusdt_20260204.db,20260204,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260204,498426,498426,0,3859,84,CRITICAL,False
+btcusdt_20260203.db,20260203,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260203,422777,422777,0,2813,80,CRITICAL,False
+btcusdt_20260202.db,20260202,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260202,466869,466869,0,3051,79,CRITICAL,False
+btcusdt_20260201.db,20260201,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260201,459394,459394,0,3183,82,CRITICAL,False
+btcusdt_20260131.db,20260131,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260131,436348,436348,0,3137,86,CRITICAL,False
+btcusdt_20260130.db,20260130,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260130,403889,403889,0,2681,82,CRITICAL,False
+btcusdt_20260129.db,20260129,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260129,362605,362605,0,2832,89,CRITICAL,False
+btcusdt_20260128.db,20260128,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260128,343678,343678,0,2081,78,CRITICAL,False
+btcusdt_20260127.db,20260127,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260127,270291,270291,0,2048,86,CRITICAL,False
+btcusdt_20260126.db,20260126,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260126,266474,266474,0,2093,88,CRITICAL,False
+btcusdt_20260125.db,20260125,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260125,289806,289806,0,2607,90,CRITICAL,False
+btcusdt_20260124.db,20260124,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent14/runs/btcusdt_20260124,131052,131052,0,2332,100,CRITICAL,False

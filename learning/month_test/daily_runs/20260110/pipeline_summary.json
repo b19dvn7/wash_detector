@@ -1,0 +1,21 @@
+{
+  "source_db": "/home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA/btcusdt_20260110.db",
+  "run_dir": "learning/month_test/daily_runs/20260110",
+  "normalized_db": "learning/month_test/daily_runs/20260110/normalized.db",
+  "detection_json": "learning/month_test/daily_runs/20260110/detection_report.json",
+  "generated_at_utc": "2026-02-17T23:56:41.305200+00:00",
+  "passed": true,
+  "ingest": {
+    "schema_passed": true,
+    "input_rows": 147379,
+    "output_rows": 147379,
+    "skipped_rows": 0,
+    "warning_count": 0
+  },
+  "detection": {
+    "analyzed_rows": 147379,
+    "alert_count": 2637,
+    "risk_score": 99,
+    "risk_level": "CRITICAL"
+  }
+}

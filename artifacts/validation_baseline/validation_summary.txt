@@ -1,0 +1,27 @@
+Synthetic validation report
+  run_dir: /home/bigdan7/Projects/wash_detector/artifacts/validation_baseline
+  generated_at_utc: 2026-02-12T03:00:34.700737+00:00
+  status: PASS
+  fixture:
+    - normal_trades: 240
+    - suspicious_pairs: 30
+    - labeled_positives: 30
+  ingest:
+    - schema: PASS
+    - input_rows: 300
+    - output_rows: 300
+    - skipped_rows: 0
+  detection:
+    - analyzed_rows: 300
+    - alert_count: 30
+    - risk_score: 100
+    - risk_level: CRITICAL
+  metrics:
+    - precision: 1.0000
+    - recall: 1.0000
+    - false_positive_rate: 0.0000
+    - TP/FP/FN/TN: 30/0/0/270
+  thresholds:
+    - min_precision: 0.60
+    - min_recall: 0.60
+    - max_false_positive_rate: 0.20

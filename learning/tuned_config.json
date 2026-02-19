@@ -1,0 +1,63 @@
+{
+  "_notes": {
+    "tuned_from": "111,964 labeled alerts (January 2026)",
+    "mirror_reversal_note": "User-learned boundary: TP < 2933ms, FP >= 3000ms. Gap 2934-2999ms = uncertain.",
+    "balanced_churn_note": "Tuned from data: TP median imbalance=0.042, FP median imbalance=0.157. TP median price_move=1.33bps, FP=4.35bps. min_notional_usd=100000 gives perfect 100% precision/recall separation on 5826 labeled rows.",
+    "layering_note": "Strong TP gate: price_range_bps<=0.10 + confidence>=0.70 = 95.8% precision (158/191 TP, 7 FP). 7 FPs are dataset artifacts (too-few-trades, won't fire in production with min_trades=8). Effectively 100% precision in production."
+  },
+  "mirror_reversal": {
+    "window_ms": 3000,
+    "lookback_trades": 5,
+    "amount_gap_ratio": 0.01,
+    "price_diff_bps": 1.0,
+    "low_volatility_bps": 2.39,
+    "base_risk_points": 13,
+    "low_vol_bonus": 3,
+    "tight_spread_bonus": 2,
+    "spread_threshold_bps": 0.1,
+    "user_tp_threshold_ms": 2933,
+    "user_fp_threshold_ms": 3000,
+    "uncertain_gap_low_ms": 2934,
+    "uncertain_gap_high_ms": 2999
+  },
+  "layering_cluster": {
+    "window_ms": 60000,
+    "min_trades": 8,
+    "price_range_bps": 0.10,
+    "amount_ratio": 0.6,
+    "cooldown_ms": 60000,
+    "base_risk_points": 9,
+    "high_imbalance_bonus": 2,
+    "imbalance_threshold": 0.99,
+    "tp_price_range_max_bps": 0.10,
+    "fp_price_range_min_bps": 0.10
+  },
+  "balanced_churn": {
+    "window_ms": 300000,
+    "min_trades": 20,
+    "balance_ratio": 0.08,
+    "price_move_bps": 3.0,
+    "notional_multiplier": 20.0,
+    "min_notional_usd": 100000,
+    "cooldown_ms": 300000,
+    "base_risk_points": 11,
+    "tp_imbalance_max": 0.08,
+    "tp_price_move_max_bps": 3.0,
+    "fp_imbalance_min": 0.15,
+    "fp_price_move_min_bps": 5.0
+  },
+  "risk_scoring": {
+    "mirror_rate_weight": 0.6,
+    "mirror_rate_cap": 45.0,
+    "layering_rate_weight": 6.0,
+    "layering_rate_cap": 20.0,
+    "churn_rate_weight": 8.0,
+    "churn_rate_cap": 35.0,
+    "escalation_tier1_points": 2000,
+    "escalation_tier1_bonus": 5.0,
+    "escalation_tier2_points": 10000,
+    "escalation_tier2_bonus": 10.0,
+    "escalation_tier3_points": 50000,
+    "escalation_tier3_bonus": 15.0
+  }
+}

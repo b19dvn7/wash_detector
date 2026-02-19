@@ -1,0 +1,21 @@
+{
+  "source_db": "/tmp/wd_run_src.db",
+  "run_dir": "/home/bigdan7/Projects/wash_detector/artifacts/smoke_run",
+  "normalized_db": "/home/bigdan7/Projects/wash_detector/artifacts/smoke_run/normalized.db",
+  "detection_json": "/home/bigdan7/Projects/wash_detector/artifacts/smoke_run/detection_report.json",
+  "generated_at_utc": "2026-02-12T03:00:22.266234+00:00",
+  "passed": true,
+  "ingest": {
+    "schema_passed": true,
+    "input_rows": 2,
+    "output_rows": 2,
+    "skipped_rows": 0,
+    "warning_count": 0
+  },
+  "detection": {
+    "analyzed_rows": 2,
+    "alert_count": 1,
+    "risk_score": 12,
+    "risk_level": "LOW"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "config": {
+    "mirror_reversal": {
+      "window_ms": 4691,
+      "lookback_trades": 5,
+      "amount_gap_ratio": 0.01,
+      "price_diff_bps": 1.0,
+      "low_volatility_bps": 2.3873177830641255,
+      "base_risk_points": 13,
+      "low_vol_bonus": 3,
+      "tight_spread_bonus": 2,
+      "spread_threshold_bps": 0.09999999999126885
+    },
+    "layering_cluster": {
+      "window_ms": 60000,
+      "min_trades": 8,
+      "price_range_bps": 1.0,
+      "amount_ratio": 0.6,
+      "cooldown_ms": 60000,
+      "base_risk_points": 9,
+      "high_imbalance_bonus": 2,
+      "imbalance_threshold": 0.9949796450854553
+    },
+    "balanced_churn": {
+      "window_ms": 300000,
+      "min_trades": 20,
+      "balance_ratio": 0.2,
+      "price_move_bps": 10.0,
+      "notional_multiplier": 20.0,
+      "cooldown_ms": 300000,
+      "base_risk_points": 11
+    },
+    "risk_scoring": {
+      "mirror_rate_weight": 0.6,
+      "mirror_rate_cap": 45.0,
+      "layering_rate_weight": 6.0,
+      "layering_rate_cap": 20.0,
+      "churn_rate_weight": 8.0,
+      "churn_rate_cap": 35.0,
+      "escalation_tier1_points": 2000,
+      "escalation_tier1_bonus": 5.0,
+      "escalation_tier2_points": 10000,
+      "escalation_tier2_bonus": 10.0,
+      "escalation_tier3_points": 50000,
+      "escalation_tier3_bonus": 15.0
+    }
+  },
+  "meta": {
+    "source": "hybrid",
+    "confidence": 0.95,
+    "calibration_trades": 444887,
+    "feedback_entries": 2122,
+    "generated_at_utc": "2026-02-17T22:30:54.160714+00:00"
+  }
+}

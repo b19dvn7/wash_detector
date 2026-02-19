@@ -1,0 +1,7 @@
+db_file,day,status,schema_passed,reason,run_dir,input_rows,output_rows,skipped_rows,alert_count,risk_score,risk_level,normalized_kept
+btcusdt_20251204.db,20251204,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_oldest6_tail/runs/btcusdt_20251204,480683,480683,0,2348,66,HIGH,False
+btcusdt_20251205.db,20251205,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_oldest6_tail/runs/btcusdt_20251205,439099,439099,0,2437,74,HIGH,False
+btcusdt_20251206.db,20251206,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_oldest6_tail/runs/btcusdt_20251206,256626,256626,0,2298,91,CRITICAL,False
+btcusdt_20251207.db,20251207,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_oldest6_tail/runs/btcusdt_20251207,405263,405263,0,2456,78,CRITICAL,False
+btcusdt_20251208.db,20251208,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_oldest6_tail/runs/btcusdt_20251208,444887,444887,0,2397,74,HIGH,False
+btcusdt_20251209.db,20251209,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_oldest6_tail/runs/btcusdt_20251209,423917,423917,0,2286,71,HIGH,False

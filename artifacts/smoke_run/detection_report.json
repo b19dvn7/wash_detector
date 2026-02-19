@@ -1,0 +1,27 @@
+{
+  "normalized_db": "/home/bigdan7/Projects/wash_detector/artifacts/smoke_run/normalized.db",
+  "generated_at_utc": "2026-02-12T03:00:22.266006+00:00",
+  "analyzed_rows": 2,
+  "alert_count": 1,
+  "risk_score": 12,
+  "risk_level": "LOW",
+  "warnings": [],
+  "alerts": [
+    {
+      "detector": "mirror_reversal",
+      "timestamp_ms": 1707600002000,
+      "timestamp_iso": "2024-02-10T21:20:02+00:00",
+      "risk_points": 12,
+      "reason": "Opposite-side near-equal trade pair in short interval at near-equal price.",
+      "evidence": {
+        "anchor_trade_id": 2,
+        "trade_id_prev": 1,
+        "trade_id_curr": 2,
+        "delta_ms": 1000,
+        "amount_gap_ratio": 0.0,
+        "price_diff_bps": 0.99995,
+        "volatility_bps": 40.0
+      }
+    }
+  ]
+}

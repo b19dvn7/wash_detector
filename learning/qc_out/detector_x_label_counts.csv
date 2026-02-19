@@ -1,0 +1,4 @@
+detector,FP,TP,UNCERTAIN
+balanced_churn,5375,450,1
+layering_cluster,27,191,0
+mirror_reversal,4949,100971,0

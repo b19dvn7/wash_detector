@@ -1,0 +1,15 @@
+Real batch run report
+  data_dir: /home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA
+  run_dir: /home/bigdan7/Projects/wash_detector/artifacts/batch_oldest6_tail
+  generated_at_utc: 2026-02-12T07:00:49.093379+00:00
+  total_files: 6
+  processed_files: 6
+  pass_count: 6
+  fail_count: 0
+  day_results:
+    - btcusdt_20251204.db: PASS | rows 480683->480683 | alerts 2348 | risk 66 HIGH | norm:dropped
+    - btcusdt_20251205.db: PASS | rows 439099->439099 | alerts 2437 | risk 74 HIGH | norm:dropped
+    - btcusdt_20251206.db: PASS | rows 256626->256626 | alerts 2298 | risk 91 CRITICAL | norm:dropped
+    - btcusdt_20251207.db: PASS | rows 405263->405263 | alerts 2456 | risk 78 CRITICAL | norm:dropped
+    - btcusdt_20251208.db: PASS | rows 444887->444887 | alerts 2397 | risk 74 HIGH | norm:dropped
+    - btcusdt_20251209.db: PASS | rows 423917->423917 | alerts 2286 | risk 71 HIGH | norm:dropped

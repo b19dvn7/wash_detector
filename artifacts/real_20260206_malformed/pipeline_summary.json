@@ -1,0 +1,16 @@
+{
+  "source_db": "/home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA/btcusdt_20260206.db",
+  "run_dir": "/home/bigdan7/Projects/wash_detector/artifacts/real_20260206_malformed",
+  "normalized_db": "/home/bigdan7/Projects/wash_detector/artifacts/real_20260206_malformed/normalized.db",
+  "detection_json": "/home/bigdan7/Projects/wash_detector/artifacts/real_20260206_malformed/detection_report.json",
+  "generated_at_utc": "2026-02-12T03:16:16.296424+00:00",
+  "passed": false,
+  "ingest": {
+    "schema_passed": false,
+    "input_rows": 0,
+    "output_rows": 0,
+    "skipped_rows": 0,
+    "warning_count": 0
+  },
+  "detection": null
+}

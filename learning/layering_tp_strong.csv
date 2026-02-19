@@ -1,0 +1,159 @@
+event_id,timestamp_iso_utc,timestamp_ms,day,detector,pair_id,auto_label,confidence,reason,delta_ms,amount_gap_pct,price_diff_bps,trades_apart,window_seconds,imbalance_ratio,notional_usd,price_move_bps,is_partial_window,price_range_bps
+1767245340182_layering_cluster_4030,2026-01-01T05:29:00.182000+00:00,1767245340182,Jan-1-31,layering_cluster,4030,TP,0.8,Suspicious: 48 trades at sub-tick level (layering),,,,,56.687,,,,,0.011401
+1767249760947_layering_cluster_9044,2026-01-01T06:42:40.947000+00:00,1767249760947,Jan-1-31,layering_cluster,9044,TP,0.8,Suspicious: 37 trades at sub-tick level (layering),,,,,53.082,,,,,0.011407
+1767250816447_layering_cluster_9821,2026-01-01T07:00:16.447000+00:00,1767250816447,Jan-1-31,layering_cluster,9821,TP,0.8,Suspicious: 117 trades at sub-tick level (layering),,,,,58.413,,,,,0.057045
+1767261914042_layering_cluster_26220,2026-01-01T10:05:14.042000+00:00,1767261914042,Jan-1-31,layering_cluster,26220,TP,0.8,Suspicious: 34 trades at sub-tick level (layering),,,,,59.301,,,,,0.011379
+1767263693707_layering_cluster_28283,2026-01-01T10:34:53.707000+00:00,1767263693707,Jan-1-31,layering_cluster,28283,TP,0.7,Suspicious: dense cluster of 16 trades,,,,,54.328,,,,,0.011384
+1767265071648_layering_cluster_29209,2026-01-01T10:57:51.648000+00:00,1767265071648,Jan-1-31,layering_cluster,29209,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,58.758,,,,,0.011382
+1767267154682_layering_cluster_32387,2026-01-01T11:32:34.682000+00:00,1767267154682,Jan-1-31,layering_cluster,32387,TP,0.75,Suspicious: 27 trades in 0.011bps range,,,,,57.434,,,,,0.01137
+1767286821306_layering_cluster_70793,2026-01-01T17:00:21.306000+00:00,1767286821306,Jan-1-31,layering_cluster,70793,TP,0.8,Suspicious: 204 trades at sub-tick level (layering),,,,,59.158,,,,,0.011364
+1767287081325_layering_cluster_71115,2026-01-01T17:04:41.325000+00:00,1767287081325,Jan-1-31,layering_cluster,71115,TP,0.7,Borderline but tight range (0.0114bps) = likely layering,,,,,59.035,,,,,0.011366
+1767287396312_layering_cluster_71416,2026-01-01T17:09:56.312000+00:00,1767287396312,Jan-1-31,layering_cluster,71416,TP,0.7,Suspicious: dense cluster of 19 trades,,,,,57.361,,,,,0.011364
+1767295945154_layering_cluster_93089,2026-01-01T19:32:25.154000+00:00,1767295945154,Jan-1-31,layering_cluster,93089,TP,0.7,Borderline but tight range (0.0113bps) = likely layering,,,,,50.607,,,,,0.011342
+1767296834199_layering_cluster_94993,2026-01-01T19:47:14.199000+00:00,1767296834199,Jan-1-31,layering_cluster,94993,TP,0.8,Suspicious: 62 trades at sub-tick level (layering),,,,,51.726,,,,,0.011324
+1767298638837_layering_cluster_100222,2026-01-01T20:17:18.837000+00:00,1767298638837,Jan-1-31,layering_cluster,100222,TP,0.8,Suspicious: 111 trades at sub-tick level (layering),,,,,55.426,,,,,0.01132
+1767304602869_layering_cluster_109489,2026-01-01T21:56:42.869000+00:00,1767304602869,Jan-1-31,layering_cluster,109489,TP,0.75,Suspicious: 27 trades in 0.011bps range,,,,,56.13,,,,,0.011314
+1767304679304_layering_cluster_109531,2026-01-01T21:57:59.304000+00:00,1767304679304,Jan-1-31,layering_cluster,109531,TP,0.8,Suspicious: 31 trades at sub-tick level (layering),,,,,59.657,,,,,0.011314
+1767305780008_layering_cluster_112693,2026-01-01T22:16:20.008000+00:00,1767305780008,Jan-1-31,layering_cluster,112693,TP,0.8,Suspicious: 46 trades at sub-tick level (layering),,,,,59.892,,,,,0.011297
+1767305840022_layering_cluster_112740,2026-01-01T22:17:20.022000+00:00,1767305840022,Jan-1-31,layering_cluster,112740,TP,0.8,Suspicious: 47 trades at sub-tick level (layering),,,,,59.881,,,,,0.011297
+1767315478747_layering_cluster_145746,2026-01-02T00:57:58.747000+00:00,1767315478747,Jan-1-31,layering_cluster,145746,TP,0.8,Suspicious: 46 trades at sub-tick level (layering),,,,,58.119,,,,,0.011261
+1767318981477_layering_cluster_155939,2026-01-02T01:56:21.477000+00:00,1767318981477,Jan-1-31,layering_cluster,155939,TP,0.8,Suspicious: 69 trades at sub-tick level (layering),,,,,56.463,,,,,0.090269
+1767462613542_layering_cluster_126181,2026-01-03T17:50:13.542000+00:00,1767462613542,Jan-1-31,layering_cluster,126181,TP,0.8,Suspicious: 117 trades at sub-tick level (layering),,,,,55.642,,,,,0.011101
+1767462862285_layering_cluster_126440,2026-01-03T17:54:22.285000+00:00,1767462862285,Jan-1-31,layering_cluster,126440,TP,0.7,Borderline but tight range (0.0111bps) = likely layering,,,,,58.071,,,,,0.011099
+1767464065159_layering_cluster_127684,2026-01-03T18:14:25.159000+00:00,1767464065159,Jan-1-31,layering_cluster,127684,TP,0.8,Suspicious: 31 trades at sub-tick level (layering),,,,,60.0,,,,,0.011106
+1767466055809_layering_cluster_131289,2026-01-03T18:47:35.809000+00:00,1767466055809,Jan-1-31,layering_cluster,131289,TP,0.7,Suspicious: dense cluster of 23 trades,,,,,50.768,,,,,0.01109
+1767466173141_layering_cluster_131353,2026-01-03T18:49:33.141000+00:00,1767466173141,Jan-1-31,layering_cluster,131353,TP,0.8,Suspicious: 50 trades at sub-tick level (layering),,,,,58.01,,,,,0.011091
+1767466874004_layering_cluster_132288,2026-01-03T19:01:14.004000+00:00,1767466874004,Jan-1-31,layering_cluster,132288,TP,0.8,Suspicious: 174 trades at sub-tick level (layering),,,,,59.879,,,,,0.011095
+1767468999522_layering_cluster_135423,2026-01-03T19:36:39.522000+00:00,1767468999522,Jan-1-31,layering_cluster,135423,TP,0.8,Suspicious: 44 trades at sub-tick level (layering),,,,,59.07,,,,,0.011095
+1767469313397_layering_cluster_135908,2026-01-03T19:41:53.397000+00:00,1767469313397,Jan-1-31,layering_cluster,135908,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,53.052,,,,,0.011094
+1767469888670_layering_cluster_136370,2026-01-03T19:51:28.670000+00:00,1767469888670,Jan-1-31,layering_cluster,136370,TP,0.8,Suspicious: 49 trades at sub-tick level (layering),,,,,59.727,,,,,0.011097
+1767493701294_layering_cluster_214274,2026-01-04T02:28:21.294000+00:00,1767493701294,Jan-1-31,layering_cluster,214274,TP,0.8,Suspicious: 79 trades at sub-tick level (layering),,,,,58.44,,,,,0.010965
+1767534732986_layering_cluster_116176,2026-01-04T13:52:12.986000+00:00,1767534732986,Jan-1-31,layering_cluster,116176,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,59.344,,,,,0.010961
+1767543166142_layering_cluster_139930,2026-01-04T16:12:46.142000+00:00,1767543166142,Jan-1-31,layering_cluster,139930,TP,0.8,Suspicious: 126 trades at sub-tick level (layering),,,,,56.651,,,,,0.021911
+1767550506819_layering_cluster_154703,2026-01-04T18:15:06.819000+00:00,1767550506819,Jan-1-31,layering_cluster,154703,TP,0.8,Suspicious: 35 trades at sub-tick level (layering),,,,,58.592,,,,,0.01096
+1767560271089_layering_cluster_180657,2026-01-04T20:57:51.089000+00:00,1767560271089,Jan-1-31,layering_cluster,180657,TP,0.7,Suspicious: dense cluster of 18 trades,,,,,58.333,,,,,0.010951
+1767565598467_layering_cluster_193142,2026-01-04T22:26:38.467000+00:00,1767565598467,Jan-1-31,layering_cluster,193142,TP,0.7,Borderline but tight range (0.0110bps) = likely layering,,,,,56.451,,,,,0.010961
+1767674870242_layering_cluster_407232,2026-01-06T04:47:50.242000+00:00,1767674870242,Jan-1-31,layering_cluster,407232,TP,0.8,Suspicious: 120 trades at sub-tick level (layering),,,,,59.228,,,,,0.010659
+1767934806170_layering_cluster_72,2026-01-09T05:00:06.170000+00:00,1767934806170,Jan-1-31,layering_cluster,72,TP,0.8,Suspicious: 72 trades at sub-tick level (layering),,,,,12.6,,,,,0.010987
+1768000431318_layering_cluster_213112,2026-01-09T23:13:51.318000+00:00,1768000431318,Jan-1-31,layering_cluster,213112,TP,0.7,Suspicious: dense cluster of 18 trades,,,,,59.158,,,,,0.011026
+1768002541548_layering_cluster_217002,2026-01-09T23:49:01.548000+00:00,1768002541548,Jan-1-31,layering_cluster,217002,TP,0.8,Suspicious: 47 trades at sub-tick level (layering),,,,,59.054,,,,,0.011028
+1768006821338_layering_cluster_226068,2026-01-10T01:00:21.338000+00:00,1768006821338,Jan-1-31,layering_cluster,226068,TP,0.8,Suspicious: 197 trades at sub-tick level (layering),,,,,59.629,,,,,0.011038
+1768013657001_layering_cluster_240039,2026-01-10T02:54:17.001000+00:00,1768013657001,Jan-1-31,layering_cluster,240039,TP,0.7,Suspicious: dense cluster of 24 trades,,,,,59.682,,,,,0.011031
+1768016934318_layering_cluster_246125,2026-01-10T03:48:54.318000+00:00,1768016934318,Jan-1-31,layering_cluster,246125,TP,0.8,Suspicious: 116 trades at sub-tick level (layering),,,,,59.2,,,,,0.011039
+1768036336929_layering_cluster_37533,2026-01-10T09:12:16.929000+00:00,1768036336929,Jan-1-31,layering_cluster,37533,TP,0.75,Suspicious: 29 trades in 0.011bps range,,,,,55.891,,,,,0.011032
+1768036492568_layering_cluster_37706,2026-01-10T09:14:52.568000+00:00,1768036492568,Jan-1-31,layering_cluster,37706,TP,0.8,Suspicious: 76 trades at sub-tick level (layering),,,,,54.574,,,,,0.011032
+1768037760307_layering_cluster_39100,2026-01-10T09:36:00.307000+00:00,1768037760307,Jan-1-31,layering_cluster,39100,TP,0.8,Suspicious: 118 trades at sub-tick level (layering),,,,,57.689,,,,,0.011034
+1768049923121_layering_cluster_63239,2026-01-10T12:58:43.121000+00:00,1768049923121,Jan-1-31,layering_cluster,63239,TP,0.75,Suspicious: 25 trades in 0.011bps range,,,,,59.788,,,,,0.011024
+1768050093320_layering_cluster_63766,2026-01-10T13:01:33.320000+00:00,1768050093320,Jan-1-31,layering_cluster,63766,TP,0.8,Suspicious: 120 trades at sub-tick level (layering),,,,,58.182,,,,,0.011022
+1768052989752_layering_cluster_67608,2026-01-10T13:49:49.752000+00:00,1768052989752,Jan-1-31,layering_cluster,67608,TP,0.8,Suspicious: 37 trades at sub-tick level (layering),,,,,59.033,,,,,0.011025
+1768053622170_layering_cluster_69110,2026-01-10T14:00:22.170000+00:00,1768053622170,Jan-1-31,layering_cluster,69110,TP,0.8,Suspicious: 211 trades at sub-tick level (layering),,,,,59.513,,,,,0.011031
+1768062491127_layering_cluster_83943,2026-01-10T16:28:11.127000+00:00,1768062491127,Jan-1-31,layering_cluster,83943,TP,0.8,Suspicious: 49 trades at sub-tick level (layering),,,,,58.51,,,,,0.011033
+1768062551234_layering_cluster_83992,2026-01-10T16:29:11.234000+00:00,1768062551234,Jan-1-31,layering_cluster,83992,TP,0.8,Suspicious: 49 trades at sub-tick level (layering),,,,,59.98,,,,,0.011033
+1768062941372_layering_cluster_84877,2026-01-10T16:35:41.372000+00:00,1768062941372,Jan-1-31,layering_cluster,84877,TP,0.8,Suspicious: 36 trades at sub-tick level (layering),,,,,59.306,,,,,0.011032
+1768070264898_layering_cluster_94477,2026-01-10T18:37:44.898000+00:00,1768070264898,Jan-1-31,layering_cluster,94477,TP,0.8,Suspicious: 118 trades at sub-tick level (layering),,,,,58.18,,,,,0.01104
+1768071649347_layering_cluster_95779,2026-01-10T19:00:49.347000+00:00,1768071649347,Jan-1-31,layering_cluster,95779,TP,0.8,Suspicious: 253 trades at sub-tick level (layering),,,,,59.207,,,,,0.011038
+1768077853937_layering_cluster_101020,2026-01-10T20:44:13.937000+00:00,1768077853937,Jan-1-31,layering_cluster,101020,TP,0.7,Suspicious: dense cluster of 16 trades,,,,,56.162,,,,,0.01104
+1768080364613_layering_cluster_104096,2026-01-10T21:26:04.613000+00:00,1768080364613,Jan-1-31,layering_cluster,104096,TP,0.7,Borderline but tight range (0.0110bps) = likely layering,,,,,51.195,,,,,0.011041
+1768085279187_layering_cluster_113021,2026-01-10T22:47:59.187000+00:00,1768085279187,Jan-1-31,layering_cluster,113021,TP,0.7,Suspicious: dense cluster of 19 trades,,,,,58.469,,,,,0.011049
+1768089590804_layering_cluster_120240,2026-01-10T23:59:50.804000+00:00,1768089590804,Jan-1-31,layering_cluster,120240,TP,0.8,Suspicious: 114 trades at sub-tick level (layering),,,,,52.647,,,,,0.011049
+1768091730718_layering_cluster_123970,2026-01-11T00:35:30.718000+00:00,1768091730718,Jan-1-31,layering_cluster,123970,TP,0.7,Borderline but tight range (0.0110bps) = likely layering,,,,,55.311,,,,,0.01104
+1768095673618_layering_cluster_130116,2026-01-11T01:41:13.618000+00:00,1768095673618,Jan-1-31,layering_cluster,130116,TP,0.8,Suspicious: 51 trades at sub-tick level (layering),,,,,49.412,,,,,0.011042
+1768096062611_layering_cluster_130529,2026-01-11T01:47:42.611000+00:00,1768096062611,Jan-1-31,layering_cluster,130529,TP,0.7,Suspicious: dense cluster of 18 trades,,,,,52.881,,,,,0.011039
+1768099057334_layering_cluster_134210,2026-01-11T02:37:37.334000+00:00,1768099057334,Jan-1-31,layering_cluster,134210,TP,0.8,Suspicious: 154 trades at sub-tick level (layering),,,,,58.664,,,,,0.011033
+1768100663053_layering_cluster_137318,2026-01-11T03:04:23.053000+00:00,1768100663053,Jan-1-31,layering_cluster,137318,TP,0.8,Suspicious: 32 trades at sub-tick level (layering),,,,,57.95,,,,,0.011029
+1768105265685_layering_cluster_144513,2026-01-11T04:21:05.685000+00:00,1768105265685,Jan-1-31,layering_cluster,144513,TP,0.7,Suspicious: dense cluster of 19 trades,,,,,59.755,,,,,0.011025
+1768107606138_layering_cluster_36,2026-01-11T05:00:06.138000+00:00,1768107606138,Jan-1-31,layering_cluster,36,TP,0.8,Suspicious: 36 trades at sub-tick level (layering),,,,,4.076,,,,,0.011013
+1768108796999_layering_cluster_1648,2026-01-11T05:19:56.999000+00:00,1768108796999,Jan-1-31,layering_cluster,1648,TP,0.8,Suspicious: 123 trades at sub-tick level (layering),,,,,58.044,,,,,0.011019
+1768114805339_layering_cluster_10419,2026-01-11T07:00:05.339000+00:00,1768114805339,Jan-1-31,layering_cluster,10419,TP,0.8,Suspicious: 89 trades at sub-tick level (layering),,,,,57.22,,,,,0.01102
+1768114865966_layering_cluster_10674,2026-01-11T07:01:05.966000+00:00,1768114865966,Jan-1-31,layering_cluster,10674,TP,0.8,Suspicious: 249 trades at sub-tick level (layering),,,,,52.647,,,,,0.01102
+1768115364243_layering_cluster_12040,2026-01-11T07:09:24.243000+00:00,1768115364243,Jan-1-31,layering_cluster,12040,TP,0.8,Suspicious: 86 trades at sub-tick level (layering),,,,,59.089,,,,,0.011024
+1768122060349_layering_cluster_27413,2026-01-11T09:01:00.349000+00:00,1768122060349,Jan-1-31,layering_cluster,27413,TP,0.8,Suspicious: 274 trades at sub-tick level (layering),,,,,59.829,,,,,0.011015
+1768124422554_layering_cluster_31567,2026-01-11T09:40:22.554000+00:00,1768124422554,Jan-1-31,layering_cluster,31567,TP,0.7,Suspicious: dense cluster of 18 trades,,,,,57.473,,,,,0.011026
+1768140062475_layering_cluster_60326,2026-01-11T14:01:02.475000+00:00,1768140062475,Jan-1-31,layering_cluster,60326,TP,0.8,Suspicious: 339 trades at sub-tick level (layering),,,,,59.557,,,,,0.011007
+1768152788349_layering_cluster_98349,2026-01-11T17:33:08.349000+00:00,1768152788349,Jan-1-31,layering_cluster,98349,TP,0.8,Suspicious: 116 trades at sub-tick level (layering),,,,,58.89,,,,,0.010983
+1768165797221_layering_cluster_126080,2026-01-11T21:09:57.221000+00:00,1768165797221,Jan-1-31,layering_cluster,126080,TP,0.7,Borderline but tight range (0.0110bps) = likely layering,,,,,55.271,,,,,0.011034
+1768166613956_layering_cluster_128235,2026-01-11T21:23:33.956000+00:00,1768166613956,Jan-1-31,layering_cluster,128235,TP,0.7,Suspicious: dense cluster of 21 trades,,,,,57.92,,,,,0.011029
+1768170439765_layering_cluster_138276,2026-01-11T22:27:19.765000+00:00,1768170439765,Jan-1-31,layering_cluster,138276,TP,0.7,Suspicious: dense cluster of 16 trades,,,,,59.662,,,,,0.011023
+1768516493871_layering_cluster_326858,2026-01-15T22:34:53.871000+00:00,1768516493871,Jan-1-31,layering_cluster,326858,TP,0.8,Suspicious: 36 trades at sub-tick level (layering),,,,,57.813,,,,,0.010436
+1768531454827_layering_cluster_377483,2026-01-16T02:44:14.827000+00:00,1768531454827,Jan-1-31,layering_cluster,377483,TP,0.8,Suspicious: 64 trades at sub-tick level (layering),,,,,51.038,,,,,0.010474
+1768531999542_layering_cluster_378675,2026-01-16T02:53:19.542000+00:00,1768531999542,Jan-1-31,layering_cluster,378675,TP,0.8,Suspicious: 65 trades at sub-tick level (layering),,,,,59.754,,,,,0.010469
+1768614833337_layering_cluster_275284,2026-01-17T01:53:53.337000+00:00,1768614833337,Jan-1-31,layering_cluster,275284,TP,0.8,Suspicious: 116 trades at sub-tick level (layering),,,,,58.024,,,,,0.010481
+1768617242107_layering_cluster_280483,2026-01-17T02:34:02.107000+00:00,1768617242107,Jan-1-31,layering_cluster,280483,TP,0.7,Suspicious: dense cluster of 19 trades,,,,,57.22,,,,,0.010499
+1768620845993_layering_cluster_287841,2026-01-17T03:34:05.993000+00:00,1768620845993,Jan-1-31,layering_cluster,287841,TP,0.7,Suspicious: dense cluster of 22 trades,,,,,59.735,,,,,0.010497
+1768624751140_layering_cluster_295008,2026-01-17T04:39:11.140000+00:00,1768624751140,Jan-1-31,layering_cluster,295008,TP,0.8,Suspicious: 61 trades at sub-tick level (layering),,,,,59.66,,,,,0.010494
+1768626424699_layering_cluster_735,2026-01-17T05:07:04.699000+00:00,1768626424699,Jan-1-31,layering_cluster,735,TP,0.8,Suspicious: 65 trades at sub-tick level (layering),,,,,59.01,,,,,0.010488
+1768630696899_layering_cluster_7431,2026-01-17T06:18:16.899000+00:00,1768630696899,Jan-1-31,layering_cluster,7431,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,51.831,,,,,0.010503
+1768644054305_layering_cluster_38677,2026-01-17T10:00:54.305000+00:00,1768644054305,Jan-1-31,layering_cluster,38677,TP,0.8,Suspicious: 256 trades at sub-tick level (layering),,,,,57.479,,,,,0.010498
+1768650685075_layering_cluster_51133,2026-01-17T11:51:25.075000+00:00,1768650685075,Jan-1-31,layering_cluster,51133,TP,0.8,Suspicious: 71 trades at sub-tick level (layering),,,,,58.911,,,,,0.010494
+1768656393305_layering_cluster_62168,2026-01-17T13:26:33.305000+00:00,1768656393305,Jan-1-31,layering_cluster,62168,TP,0.8,Suspicious: 91 trades at sub-tick level (layering),,,,,58.602,,,,,0.01049
+1768674135488_layering_cluster_108846,2026-01-17T18:22:15.488000+00:00,1768674135488,Jan-1-31,layering_cluster,108846,TP,0.7,Suspicious: dense cluster of 18 trades,,,,,57.064,,,,,0.010475
+1768677705645_layering_cluster_113599,2026-01-17T19:21:45.645000+00:00,1768677705645,Jan-1-31,layering_cluster,113599,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,55.848,,,,,0.010487
+1768680026940_layering_cluster_116203,2026-01-17T20:00:26.940000+00:00,1768680026940,Jan-1-31,layering_cluster,116203,TP,0.8,Suspicious: 226 trades at sub-tick level (layering),,,,,56.235,,,,,0.010494
+1768680337700_layering_cluster_116476,2026-01-17T20:05:37.700000+00:00,1768680337700,Jan-1-31,layering_cluster,116476,TP,0.8,Suspicious: 52 trades at sub-tick level (layering),,,,,59.343,,,,,0.010494
+1768680565063_layering_cluster_116563,2026-01-17T20:09:25.063000+00:00,1768680565063,Jan-1-31,layering_cluster,116563,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,59.991,,,,,0.010493
+1768681958820_layering_cluster_118649,2026-01-17T20:32:38.820000+00:00,1768681958820,Jan-1-31,layering_cluster,118649,TP,0.7,Suspicious: dense cluster of 18 trades,,,,,53.137,,,,,0.010494
+1768682849822_layering_cluster_119399,2026-01-17T20:47:29.822000+00:00,1768682849822,Jan-1-31,layering_cluster,119399,TP,0.7,Suspicious: dense cluster of 20 trades,,,,,58.634,,,,,0.010485
+1768687222939_layering_cluster_124728,2026-01-17T22:00:22.939000+00:00,1768687222939,Jan-1-31,layering_cluster,124728,TP,0.8,Suspicious: 195 trades at sub-tick level (layering),,,,,59.557,,,,,0.010492
+1768694347373_layering_cluster_140378,2026-01-17T23:59:07.373000+00:00,1768694347373,Jan-1-31,layering_cluster,140378,TP,0.8,Suspicious: 66 trades at sub-tick level (layering),,,,,58.02,,,,,0.01051
+1768699589588_layering_cluster_153352,2026-01-18T01:26:29.588000+00:00,1768699589588,Jan-1-31,layering_cluster,153352,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,51.084,,,,,0.010526
+1768704704997_layering_cluster_165205,2026-01-18T02:51:44.997000+00:00,1768704704997,Jan-1-31,layering_cluster,165205,TP,0.75,Suspicious: 25 trades in 0.011bps range,,,,,59.57,,,,,0.010529
+1768705117398_layering_cluster_166077,2026-01-18T02:58:37.398000+00:00,1768705117398,Jan-1-31,layering_cluster,166077,TP,0.8,Suspicious: 106 trades at sub-tick level (layering),,,,,56.309,,,,,0.010524
+1768710807269_layering_cluster_177028,2026-01-18T04:33:27.269000+00:00,1768710807269,Jan-1-31,layering_cluster,177028,TP,0.8,Suspicious: 77 trades at sub-tick level (layering),,,,,57.715,,,,,0.010518
+1768711900029_layering_cluster_178105,2026-01-18T04:51:40.029000+00:00,1768711900029,Jan-1-31,layering_cluster,178105,TP,0.8,Suspicious: 107 trades at sub-tick level (layering),,,,,52.989,,,,,0.010514
+1768712206691_layering_cluster_178292,2026-01-18T04:56:46.691000+00:00,1768712206691,Jan-1-31,layering_cluster,178292,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,59.578,,,,,0.010515
+1768712276820_layering_cluster_178304,2026-01-18T04:57:56.820000+00:00,1768712276820,Jan-1-31,layering_cluster,178304,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,53.288,,,,,0.010515
+1768712206691_layering_cluster_51,2026-01-18T04:56:46.691000+00:00,1768712206691,Jan-1-31,layering_cluster,51,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,59.578,,,,,0.010515
+1768712276820_layering_cluster_63,2026-01-18T04:57:56.820000+00:00,1768712276820,Jan-1-31,layering_cluster,63,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,53.288,,,,,0.010515
+1768712415740_layering_cluster_233,2026-01-18T05:00:15.740000+00:00,1768712415740,Jan-1-31,layering_cluster,233,TP,0.8,Suspicious: 148 trades at sub-tick level (layering),,,,,55.351,,,,,0.010515
+1768712485599_layering_cluster_398,2026-01-18T05:01:25.599000+00:00,1768712485599,Jan-1-31,layering_cluster,398,TP,0.8,Suspicious: 75 trades at sub-tick level (layering),,,,,59.482,,,,,0.010515
+1768716737689_layering_cluster_9323,2026-01-18T06:12:17.689000+00:00,1768716737689,Jan-1-31,layering_cluster,9323,TP,0.8,Suspicious: 148 trades at sub-tick level (layering),,,,,51.535,,,,,0.010506
+1768719604589_layering_cluster_13538,2026-01-18T07:00:04.589000+00:00,1768719604589,Jan-1-31,layering_cluster,13538,TP,0.8,Suspicious: 71 trades at sub-tick level (layering),,,,,55.651,,,,,0.010506
+1768724003066_layering_cluster_25236,2026-01-18T08:13:23.066000+00:00,1768724003066,Jan-1-31,layering_cluster,25236,TP,0.7,Suspicious: dense cluster of 15 trades,,,,,57.991,,,,,0.010521
+1768725194612_layering_cluster_26716,2026-01-18T08:33:14.612000+00:00,1768725194612,Jan-1-31,layering_cluster,26716,TP,0.7,Suspicious: dense cluster of 19 trades,,,,,58.576,,,,,0.021026
+1768731238390_layering_cluster_38516,2026-01-18T10:13:58.390000+00:00,1768731238390,Jan-1-31,layering_cluster,38516,TP,0.8,Suspicious: 65 trades at sub-tick level (layering),,,,,54.475,,,,,0.01051
+1768749996673_layering_cluster_76483,2026-01-18T15:26:36.673000+00:00,1768749996673,Jan-1-31,layering_cluster,76483,TP,0.8,Suspicious: 71 trades at sub-tick level (layering),,,,,56.347,,,,,0.010523
+1768754701454_layering_cluster_86592,2026-01-18T16:45:01.454000+00:00,1768754701454,Jan-1-31,layering_cluster,86592,TP,0.8,Suspicious: 140 trades at sub-tick level (layering),,,,,59.265,,,,,0.010506
+1768757544805_layering_cluster_91839,2026-01-18T17:32:24.805000+00:00,1768757544805,Jan-1-31,layering_cluster,91839,TP,0.8,Suspicious: 38 trades at sub-tick level (layering),,,,,59.731,,,,,0.010497
+1768758205174_layering_cluster_93030,2026-01-18T17:43:25.174000+00:00,1768758205174,Jan-1-31,layering_cluster,93030,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,52.636,,,,,0.010504
+1768759687021_layering_cluster_95189,2026-01-18T18:08:07.021000+00:00,1768759687021,Jan-1-31,layering_cluster,95189,TP,0.8,Suspicious: 66 trades at sub-tick level (layering),,,,,55.697,,,,,0.010501
+1768769943788_layering_cluster_119905,2026-01-18T20:59:03.788000+00:00,1768769943788,Jan-1-31,layering_cluster,119905,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,59.299,,,,,0.010492
+1768770367678_layering_cluster_120656,2026-01-18T21:06:07.678000+00:00,1768770367678,Jan-1-31,layering_cluster,120656,TP,0.8,Suspicious: 40 trades at sub-tick level (layering),,,,,42.607,,,,,0.010492
+1768771267029_layering_cluster_121982,2026-01-18T21:21:07.029000+00:00,1768771267029,Jan-1-31,layering_cluster,121982,TP,0.8,Suspicious: 43 trades at sub-tick level (layering),,,,,57.94,,,,,0.010489
+1768772182955_layering_cluster_123451,2026-01-18T21:36:22.955000+00:00,1768772182955,Jan-1-31,layering_cluster,123451,TP,0.7,Borderline but tight range (0.0105bps) = likely layering,,,,,57.882,,,,,0.010484
+1768773100389_layering_cluster_124764,2026-01-18T21:51:40.389000+00:00,1768773100389,Jan-1-31,layering_cluster,124764,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,58.6,,,,,0.010481
+1768773274462_layering_cluster_125163,2026-01-18T21:54:34.462000+00:00,1768773274462,Jan-1-31,layering_cluster,125163,TP,0.75,Suspicious: 28 trades in 0.010bps range,,,,,58.598,,,,,0.010481
+1768774764229_layering_cluster_127920,2026-01-18T22:19:24.229000+00:00,1768774764229,Jan-1-31,layering_cluster,127920,TP,0.8,Suspicious: 113 trades at sub-tick level (layering),,,,,59.154,,,,,0.010472
+1768849228558_layering_cluster_209810,2026-01-19T19:00:28.558000+00:00,1768849228558,Jan-1-31,layering_cluster,209810,TP,0.8,Suspicious: 262 trades at sub-tick level (layering),,,,,59.125,,,,,0.021493
+1768853784578_layering_cluster_221385,2026-01-19T20:16:24.578000+00:00,1768853784578,Jan-1-31,layering_cluster,221385,TP,0.7,Suspicious: dense cluster of 17 trades,,,,,59.509,,,,,0.010734
+1769209890327_layering_cluster_287934,2026-01-23T23:11:30.327000+00:00,1769209890327,Jan-1-31,layering_cluster,287934,TP,0.8,Suspicious: 75 trades at sub-tick level (layering),,,,,57.413,,,,,0.011167
+1769222434684_layering_cluster_314011,2026-01-24T02:40:34.684000+00:00,1769222434684,Jan-1-31,layering_cluster,314011,TP,0.8,Suspicious: 135 trades at sub-tick level (layering),,,,,59.562,,,,,0.011151
+1769222518864_layering_cluster_314043,2026-01-24T02:41:58.864000+00:00,1769222518864,Jan-1-31,layering_cluster,314043,TP,0.7,Suspicious: dense cluster of 18 trades,,,,,53.738,,,,,0.011151
+1769222655115_layering_cluster_314292,2026-01-24T02:44:15.115000+00:00,1769222655115,Jan-1-31,layering_cluster,314292,TP,0.8,Suspicious: 128 trades at sub-tick level (layering),,,,,59.474,,,,,0.011151
+1769226485026_layering_cluster_324306,2026-01-24T03:48:05.026000+00:00,1769226485026,Jan-1-31,layering_cluster,324306,TP,0.8,Suspicious: 85 trades at sub-tick level (layering),,,,,59.598,,,,,0.011132
+1769230864427_layering_cluster_386,2026-01-24T05:01:04.427000+00:00,1769230864427,Jan-1-31,layering_cluster,386,TP,0.8,Suspicious: 257 trades at sub-tick level (layering),,,,,59.923,,,,,0.011132
+1769234478828_layering_cluster_6724,2026-01-24T06:01:18.828000+00:00,1769234478828,Jan-1-31,layering_cluster,6724,TP,0.8,Suspicious: 127 trades at sub-tick level (layering),,,,,59.878,,,,,0.011138
+1769237188727_layering_cluster_11556,2026-01-24T06:46:28.727000+00:00,1769237188727,Jan-1-31,layering_cluster,11556,TP,0.8,Suspicious: 140 trades at sub-tick level (layering),,,,,59.698,,,,,0.011154
+1769237337647_layering_cluster_11950,2026-01-24T06:48:57.647000+00:00,1769237337647,Jan-1-31,layering_cluster,11950,TP,0.8,Suspicious: 138 trades at sub-tick level (layering),,,,,59.72,,,,,0.011154
+1769237416127_layering_cluster_12007,2026-01-24T06:50:16.127000+00:00,1769237416127,Jan-1-31,layering_cluster,12007,TP,0.8,Suspicious: 36 trades at sub-tick level (layering),,,,,58.134,,,,,0.011154
+1769237506304_layering_cluster_12097,2026-01-24T06:51:46.304000+00:00,1769237506304,Jan-1-31,layering_cluster,12097,TP,0.8,Suspicious: 69 trades at sub-tick level (layering),,,,,58.878,,,,,0.011154
+1769237629496_layering_cluster_12256,2026-01-24T06:53:49.496000+00:00,1769237629496,Jan-1-31,layering_cluster,12256,TP,0.8,Suspicious: 38 trades at sub-tick level (layering),,,,,58.663,,,,,0.011154
+1769243159974_layering_cluster_27891,2026-01-24T08:25:59.974000+00:00,1769243159974,Jan-1-31,layering_cluster,27891,TP,0.8,Suspicious: 94 trades at sub-tick level (layering),,,,,59.965,,,,,0.011159
+1769246473827_layering_cluster_33274,2026-01-24T09:21:13.827000+00:00,1769246473827,Jan-1-31,layering_cluster,33274,TP,0.8,Suspicious: 83 trades at sub-tick level (layering),,,,,58.899,,,,,0.011158
+1769247243827_layering_cluster_34008,2026-01-24T09:34:03.827000+00:00,1769247243827,Jan-1-31,layering_cluster,34008,TP,0.8,Suspicious: 36 trades at sub-tick level (layering),,,,,59.599,,,,,0.011159
+1769247584144_layering_cluster_34369,2026-01-24T09:39:44.144000+00:00,1769247584144,Jan-1-31,layering_cluster,34369,TP,0.8,Suspicious: 141 trades at sub-tick level (layering),,,,,59.218,,,,,0.011159
+1769250709927_layering_cluster_39537,2026-01-24T10:31:49.927000+00:00,1769250709927,Jan-1-31,layering_cluster,39537,TP,0.8,Suspicious: 52 trades at sub-tick level (layering),,,,,59.5,,,,,0.011159
+1769255955414_layering_cluster_46725,2026-01-24T11:59:15.414000+00:00,1769255955414,Jan-1-31,layering_cluster,46725,TP,0.8,Suspicious: 122 trades at sub-tick level (layering),,,,,58.664,,,,,0.011161
+1769258661307_layering_cluster_51864,2026-01-24T12:44:21.307000+00:00,1769258661307,Jan-1-31,layering_cluster,51864,TP,0.8,Suspicious: 68 trades at sub-tick level (layering),,,,,59.927,,,,,0.011168
+1769260033727_layering_cluster_53856,2026-01-24T13:07:13.727000+00:00,1769260033727,Jan-1-31,layering_cluster,53856,TP,0.8,Suspicious: 69 trades at sub-tick level (layering),,,,,48.614,,,,,0.011167
+1769284837863_layering_cluster_88996,2026-01-24T20:00:37.863000+00:00,1769284837863,Jan-1-31,layering_cluster,88996,TP,0.8,Suspicious: 299 trades at sub-tick level (layering),,,,,56.388,,,,,0.011194
+1769287563044_layering_cluster_90941,2026-01-24T20:46:03.044000+00:00,1769287563044,Jan-1-31,layering_cluster,90941,TP,0.7,Suspicious: dense cluster of 16 trades,,,,,55.45,,,,,0.011187
+1769287963882_layering_cluster_91186,2026-01-24T20:52:43.882000+00:00,1769287963882,Jan-1-31,layering_cluster,91186,TP,0.8,Suspicious: 55 trades at sub-tick level (layering),,,,,34.855,,,,,0.011187
+1769289780912_layering_cluster_93092,2026-01-24T21:23:00.912000+00:00,1769289780912,Jan-1-31,layering_cluster,93092,TP,0.7,Suspicious: dense cluster of 15 trades,,,,,59.132,,,,,0.011197
+1769292562021_layering_cluster_96107,2026-01-24T22:09:22.021000+00:00,1769292562021,Jan-1-31,layering_cluster,96107,TP,0.7,Borderline but tight range (0.0112bps) = likely layering,,,,,56.842,,,,,0.011185
+1769297005158_layering_cluster_101608,2026-01-24T23:23:25.158000+00:00,1769297005158,Jan-1-31,layering_cluster,101608,TP,0.8,Suspicious: 70 trades at sub-tick level (layering),,,,,59.987,,,,,0.011188
+1769297090774_layering_cluster_101752,2026-01-24T23:24:50.774000+00:00,1769297090774,Jan-1-31,layering_cluster,101752,TP,0.8,Suspicious: 108 trades at sub-tick level (layering),,,,,59.436,,,,,0.011188
+1769300048440_layering_cluster_106220,2026-01-25T00:14:08.440000+00:00,1769300048440,Jan-1-31,layering_cluster,106220,TP,0.8,Suspicious: 53 trades at sub-tick level (layering),,,,,59.854,,,,,0.011202
+1769302765070_layering_cluster_110086,2026-01-25T00:59:25.070000+00:00,1769302765070,Jan-1-31,layering_cluster,110086,TP,0.8,Suspicious: 142 trades at sub-tick level (layering),,,,,59.999,,,,,0.011197
+1769308794750_layering_cluster_117782,2026-01-25T02:39:54.750000+00:00,1769308794750,Jan-1-31,layering_cluster,117782,TP,0.7,Borderline but tight range (0.0112bps) = likely layering,,,,,52.899,,,,,0.011213
+1769311697236_layering_cluster_121763,2026-01-25T03:28:17.236000+00:00,1769311697236,Jan-1-31,layering_cluster,121763,TP,0.8,Suspicious: 116 trades at sub-tick level (layering),,,,,54.61,,,,,0.011229
+1769835128035_layering_cluster_402987,2026-01-31T04:52:08.035000+00:00,1769835128035,Jan-1-31,layering_cluster,402987,TP,0.8,Suspicious: 132 trades at sub-tick level (layering),,,,,52.376,,,,,0.011906

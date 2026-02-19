@@ -1,0 +1,21 @@
+{
+  "source_db": "/home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA/btcusdt_20251206.db",
+  "run_dir": "/home/bigdan7/Projects/wash_detector/artifacts/batch_full65/runs/btcusdt_20251206",
+  "normalized_db": "/home/bigdan7/Projects/wash_detector/artifacts/batch_full65/runs/btcusdt_20251206/normalized.db",
+  "detection_json": "/home/bigdan7/Projects/wash_detector/artifacts/batch_full65/runs/btcusdt_20251206/detection_report.json",
+  "generated_at_utc": "2026-02-14T22:13:32.315029+00:00",
+  "passed": true,
+  "ingest": {
+    "schema_passed": true,
+    "input_rows": 256626,
+    "output_rows": 256626,
+    "skipped_rows": 0,
+    "warning_count": 0
+  },
+  "detection": {
+    "analyzed_rows": 256626,
+    "alert_count": 2298,
+    "risk_score": 91,
+    "risk_level": "CRITICAL"
+  }
+}

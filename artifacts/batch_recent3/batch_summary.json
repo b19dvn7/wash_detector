@@ -1,0 +1,56 @@
+{
+  "data_dir": "/home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA",
+  "run_dir": "/home/bigdan7/Projects/wash_detector/artifacts/batch_recent3",
+  "generated_at_utc": "2026-02-12T04:11:28.319322+00:00",
+  "total_files": 3,
+  "processed_files": 3,
+  "pass_count": 2,
+  "fail_count": 1,
+  "results": [
+    {
+      "db_file": "btcusdt_20260206.db",
+      "day": "20260206",
+      "status": "FAIL",
+      "schema_passed": false,
+      "reason": "SQLite read error while validating schema: database disk image is malformed",
+      "run_dir": null,
+      "input_rows": 0,
+      "output_rows": 0,
+      "skipped_rows": 0,
+      "alert_count": 0,
+      "risk_score": 0,
+      "risk_level": "UNKNOWN",
+      "normalized_kept": true
+    },
+    {
+      "db_file": "btcusdt_20260205.db",
+      "day": "20260205",
+      "status": "PASS",
+      "schema_passed": true,
+      "reason": "",
+      "run_dir": "/home/bigdan7/Projects/wash_detector/artifacts/batch_recent3/runs/btcusdt_20260205",
+      "input_rows": 625923,
+      "output_rows": 625923,
+      "skipped_rows": 0,
+      "alert_count": 4681,
+      "risk_score": 80,
+      "risk_level": "CRITICAL",
+      "normalized_kept": false
+    },
+    {
+      "db_file": "btcusdt_20260204.db",
+      "day": "20260204",
+      "status": "PASS",
+      "schema_passed": true,
+      "reason": "",
+      "run_dir": "/home/bigdan7/Projects/wash_detector/artifacts/batch_recent3/runs/btcusdt_20260204",
+      "input_rows": 498426,
+      "output_rows": 498426,
+      "skipped_rows": 0,
+      "alert_count": 3859,
+      "risk_score": 84,
+      "risk_level": "CRITICAL",
+      "normalized_kept": false
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+db_file,day,status,schema_passed,reason,run_dir,input_rows,output_rows,skipped_rows,alert_count,risk_score,risk_level,normalized_kept
+btcusdt_20260206.db,20260206,FAIL,False,SQLite read error while validating schema: database disk image is malformed,,0,0,0,0,0,UNKNOWN,True
+btcusdt_20260205.db,20260205,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent3/runs/btcusdt_20260205,625923,625923,0,4681,80,CRITICAL,False
+btcusdt_20260204.db,20260204,PASS,True,,/home/bigdan7/Projects/wash_detector/artifacts/batch_recent3/runs/btcusdt_20260204,498426,498426,0,3859,84,CRITICAL,False

@@ -1,0 +1,72 @@
+{
+  "run_dir": "/home/bigdan7/Projects/wash_detector/artifacts/validation_baseline",
+  "generated_at_utc": "2026-02-12T03:00:34.700737+00:00",
+  "passed": true,
+  "fixture": {
+    "source_db": "/home/bigdan7/Projects/wash_detector/artifacts/validation_baseline/synthetic_source.db",
+    "normal_trades": 240,
+    "suspicious_pairs": 30,
+    "positive_source_rowids": [
+      242,
+      244,
+      246,
+      248,
+      250,
+      252,
+      254,
+      256,
+      258,
+      260,
+      262,
+      264,
+      266,
+      268,
+      270,
+      272,
+      274,
+      276,
+      278,
+      280,
+      282,
+      284,
+      286,
+      288,
+      290,
+      292,
+      294,
+      296,
+      298,
+      300
+    ]
+  },
+  "ingest": {
+    "schema_passed": true,
+    "input_rows": 300,
+    "output_rows": 300,
+    "skipped_rows": 0,
+    "warning_count": 0
+  },
+  "detection": {
+    "analyzed_rows": 300,
+    "alert_count": 30,
+    "risk_score": 100,
+    "risk_level": "CRITICAL"
+  },
+  "metrics": {
+    "total_rows": 300,
+    "positive_labels": 30,
+    "predicted_positive": 30,
+    "true_positive": 30,
+    "false_positive": 0,
+    "false_negative": 0,
+    "true_negative": 270,
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_positive_rate": 0.0
+  },
+  "thresholds": {
+    "min_precision": 0.6,
+    "min_recall": 0.6,
+    "max_false_positive_rate": 0.2
+  }
+}
