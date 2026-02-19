@@ -193,6 +193,11 @@ def _load_trades(
         if table_exists == 0:
             raise ValueError("normalized_trades table not found")
 
+        # Check schema for backward compatibility
+        cursor = conn.execute("PRAGMA table_info(normalized_trades)")
+        columns = {row[1] for row in cursor.fetchall()}
+        has_microstructure = 'micro_orderbook_pressure' in columns
+
         where_clause = ""
         params: List[object] = []
 
@@ -206,43 +211,69 @@ def _load_trades(
                 where_clause = "WHERE timestamp_ms >= ?"
                 params.append(cutoff)
 
-        sql = f"""
-            SELECT
-                id,
-                timestamp_ms,
-                timestamp_iso,
-                side,
-                price,
-                amount,
-                notional,
-                candle_open,
-                candle_high,
-                candle_low,
-                candle_close,
-                candle_volume,
-                candle_vwap,
-                ob_spread,
-                ob_mid_price,
-                ob_imbalance,
-                micro_orderbook_pressure,
-                micro_volume_imbalance,
-                micro_price_momentum,
-                micro_liquidity_score,
-                micro_trade_intensity,
-                micro_spread_compression,
-                micro_depth_ratio_5,
-                micro_depth_ratio_20,
-                micro_price_acceleration,
-                micro_realized_volatility,
-                micro_large_trade_ratio,
-                micro_effective_spread,
-                micro_liquidity_depth,
-                micro_depth_weighted,
-                micro_liquidity_quality
-            FROM normalized_trades
-            {where_clause}
-            ORDER BY timestamp_ms ASC, id ASC
-        """
+        # Build SQL with optional microstructure columns
+        if has_microstructure:
+            sql = f"""
+                SELECT
+                    id,
+                    timestamp_ms,
+                    timestamp_iso,
+                    side,
+                    price,
+                    amount,
+                    notional,
+                    candle_open,
+                    candle_high,
+                    candle_low,
+                    candle_close,
+                    candle_volume,
+                    candle_vwap,
+                    ob_spread,
+                    ob_mid_price,
+                    ob_imbalance,
+                    micro_orderbook_pressure,
+                    micro_volume_imbalance,
+                    micro_price_momentum,
+                    micro_liquidity_score,
+                    micro_trade_intensity,
+                    micro_spread_compression,
+                    micro_depth_ratio_5,
+                    micro_depth_ratio_20,
+                    micro_price_acceleration,
+                    micro_realized_volatility,
+                    micro_large_trade_ratio,
+                    micro_effective_spread,
+                    micro_liquidity_depth,
+                    micro_depth_weighted,
+                    micro_liquidity_quality
+                FROM normalized_trades
+                {where_clause}
+                ORDER BY timestamp_ms ASC, id ASC
+            """
+        else:
+            # Old schema without microstructure columns
+            sql = f"""
+                SELECT
+                    id,
+                    timestamp_ms,
+                    timestamp_iso,
+                    side,
+                    price,
+                    amount,
+                    notional,
+                    candle_open,
+                    candle_high,
+                    candle_low,
+                    candle_close,
+                    candle_volume,
+                    candle_vwap,
+                    ob_spread,
+                    ob_mid_price,
+                    ob_imbalance
+                FROM normalized_trades
+                {where_clause}
+                ORDER BY timestamp_ms ASC, id ASC
+            """
 
         rows = conn.execute(sql, params).fetchall()
 
@@ -251,41 +282,79 @@ def _load_trades(
 
     result: List[TradeRow] = []
     for row in rows:
-        result.append(
-            TradeRow(
-                id=int(row[0]),
-                timestamp_ms=int(row[1]),
-                timestamp_iso=str(row[2]),
-                side=str(row[3]),
-                price=float(row[4]),
-                amount=float(row[5]),
-                notional=float(row[6]),
-                candle_open=_opt_float(row[7]),
-                candle_high=_opt_float(row[8]),
-                candle_low=_opt_float(row[9]),
-                candle_close=_opt_float(row[10]),
-                candle_volume=_opt_float(row[11]),
-                candle_vwap=_opt_float(row[12]),
-                ob_spread=_opt_float(row[13]),
-                ob_mid_price=_opt_float(row[14]),
-                ob_imbalance=_opt_float(row[15]),
-                micro_orderbook_pressure=_opt_float(row[16]),
-                micro_volume_imbalance=_opt_float(row[17]),
-                micro_price_momentum=_opt_float(row[18]),
-                micro_liquidity_score=_opt_float(row[19]),
-                micro_trade_intensity=_opt_float(row[20]),
-                micro_spread_compression=_opt_float(row[21]),
-                micro_depth_ratio_5=_opt_float(row[22]),
-                micro_depth_ratio_20=_opt_float(row[23]),
-                micro_price_acceleration=_opt_float(row[24]),
-                micro_realized_volatility=_opt_float(row[25]),
-                micro_large_trade_ratio=_opt_float(row[26]),
-                micro_effective_spread=_opt_float(row[27]),
-                micro_liquidity_depth=_opt_float(row[28]),
-                micro_depth_weighted=_opt_float(row[29]),
-                micro_liquidity_quality=_opt_float(row[30]),
+        if has_microstructure:
+            result.append(
+                TradeRow(
+                    id=int(row[0]),
+                    timestamp_ms=int(row[1]),
+                    timestamp_iso=str(row[2]),
+                    side=str(row[3]),
+                    price=float(row[4]),
+                    amount=float(row[5]),
+                    notional=float(row[6]),
+                    candle_open=_opt_float(row[7]),
+                    candle_high=_opt_float(row[8]),
+                    candle_low=_opt_float(row[9]),
+                    candle_close=_opt_float(row[10]),
+                    candle_volume=_opt_float(row[11]),
+                    candle_vwap=_opt_float(row[12]),
+                    ob_spread=_opt_float(row[13]),
+                    ob_mid_price=_opt_float(row[14]),
+                    ob_imbalance=_opt_float(row[15]),
+                    micro_orderbook_pressure=_opt_float(row[16]),
+                    micro_volume_imbalance=_opt_float(row[17]),
+                    micro_price_momentum=_opt_float(row[18]),
+                    micro_liquidity_score=_opt_float(row[19]),
+                    micro_trade_intensity=_opt_float(row[20]),
+                    micro_spread_compression=_opt_float(row[21]),
+                    micro_depth_ratio_5=_opt_float(row[22]),
+                    micro_depth_ratio_20=_opt_float(row[23]),
+                    micro_price_acceleration=_opt_float(row[24]),
+                    micro_realized_volatility=_opt_float(row[25]),
+                    micro_large_trade_ratio=_opt_float(row[26]),
+                    micro_effective_spread=_opt_float(row[27]),
+                    micro_liquidity_depth=_opt_float(row[28]),
+                    micro_depth_weighted=_opt_float(row[29]),
+                    micro_liquidity_quality=_opt_float(row[30]),
+                )
             )
-        )
+        else:
+            # Old schema without microstructure - set microstructure fields to None
+            result.append(
+                TradeRow(
+                    id=int(row[0]),
+                    timestamp_ms=int(row[1]),
+                    timestamp_iso=str(row[2]),
+                    side=str(row[3]),
+                    price=float(row[4]),
+                    amount=float(row[5]),
+                    notional=float(row[6]),
+                    candle_open=_opt_float(row[7]),
+                    candle_high=_opt_float(row[8]),
+                    candle_low=_opt_float(row[9]),
+                    candle_close=_opt_float(row[10]),
+                    candle_volume=_opt_float(row[11]),
+                    candle_vwap=_opt_float(row[12]),
+                    ob_spread=_opt_float(row[13]),
+                    ob_mid_price=_opt_float(row[14]),
+                    ob_imbalance=_opt_float(row[15]),
+                    micro_orderbook_pressure=None,
+                    micro_volume_imbalance=None,
+                    micro_price_momentum=None,
+                    micro_liquidity_score=None,
+                    micro_trade_intensity=None,
+                    micro_spread_compression=None,
+                    micro_depth_ratio_5=None,
+                    micro_depth_ratio_20=None,
+                    micro_price_acceleration=None,
+                    micro_realized_volatility=None,
+                    micro_large_trade_ratio=None,
+                    micro_effective_spread=None,
+                    micro_liquidity_depth=None,
+                    micro_depth_weighted=None,
+                    micro_liquidity_quality=None,
+                )
+            )
 
     return result
 
@@ -660,6 +729,20 @@ def _load_orderbook_snapshots(
 
     conn = sqlite3.connect(db_path)
     try:
+        # Check if orderbooks table exists with correct schema (backward compatibility)
+        table_exists = conn.execute(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='orderbooks'"
+        ).fetchone()[0]
+
+        if table_exists == 0:
+            return []  # No orderbooks table
+
+        # Check if orderbooks table has bids/asks columns
+        cursor = conn.execute("PRAGMA table_info(orderbooks)")
+        columns = {row[1] for row in cursor.fetchall()}
+        if 'bids' not in columns or 'asks' not in columns:
+            return []  # Old schema without bids/asks columns
+
         rows = conn.execute(
             """
             SELECT timestamp, bids, asks
@@ -747,13 +830,17 @@ def _spoofing_alerts(
     # Get source tablet DB path for orderbook data
     import sqlite3
     conn = sqlite3.connect(normalized_db_path)
+    source_db_path = None
     try:
-        source_db_row = conn.execute("SELECT value FROM ingest_meta WHERE key = 'source_db'").fetchone()
-        if not source_db_row:
-            # No source DB metadata - skip orderbook-based checks
-            source_db_path = None
-        else:
-            source_db_path = source_db_row[0]
+        # Check if ingest_meta table exists (backward compatibility)
+        table_exists = conn.execute(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='ingest_meta'"
+        ).fetchone()[0]
+
+        if table_exists > 0:
+            source_db_row = conn.execute("SELECT value FROM ingest_meta WHERE key = 'source_db'").fetchone()
+            if source_db_row:
+                source_db_path = source_db_row[0]
     finally:
         conn.close()
 
@@ -1011,12 +1098,17 @@ def _quote_stuffing_alerts(
     # Get source tablet DB path for orderbook data
     import sqlite3
     conn = sqlite3.connect(normalized_db_path)
+    source_db_path = None
     try:
-        source_db_row = conn.execute("SELECT value FROM ingest_meta WHERE key = 'source_db'").fetchone()
-        if not source_db_row:
-            source_db_path = None
-        else:
-            source_db_path = source_db_row[0]
+        # Check if ingest_meta table exists (backward compatibility)
+        table_exists = conn.execute(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='ingest_meta'"
+        ).fetchone()[0]
+
+        if table_exists > 0:
+            source_db_row = conn.execute("SELECT value FROM ingest_meta WHERE key = 'source_db'").fetchone()
+            if source_db_row:
+                source_db_path = source_db_row[0]
     finally:
         conn.close()
 
