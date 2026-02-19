@@ -112,15 +112,17 @@ def _compute_stats(values: List[float], name: str, percentiles: List[int]) -> Fe
 def _load_trades(db_path: str) -> List[Tuple]:
     """Load trades from normalized database."""
     conn = sqlite3.connect(db_path)
-    cursor = conn.execute("""
-        SELECT id, timestamp_ms, side, price, amount, notional,
-               ob_spread, ob_mid_price, ob_imbalance,
-               candle_high, candle_low
-        FROM normalized_trades
-        ORDER BY timestamp_ms ASC
-    """)
-    trades = cursor.fetchall()
-    conn.close()
+    try:
+        cursor = conn.execute("""
+            SELECT id, timestamp_ms, side, price, amount, notional,
+                   ob_spread, ob_mid_price, ob_imbalance,
+                   candle_high, candle_low
+            FROM normalized_trades
+            ORDER BY timestamp_ms ASC
+        """)
+        trades = cursor.fetchall()
+    finally:
+        conn.close()
     return trades
 
 

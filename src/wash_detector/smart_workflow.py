@@ -184,8 +184,12 @@ def run_smart_workflow(
     # Step 3: Learn from human decisions
     learned_threshold = None
     if delta_ms_tp and delta_ms_fp:
-        tp_median = sorted(delta_ms_tp)[len(delta_ms_tp) // 2]
-        fp_median = sorted(delta_ms_fp)[len(delta_ms_fp) // 2]
+        tp_sorted = sorted(delta_ms_tp)
+        n = len(tp_sorted)
+        tp_median = (tp_sorted[n // 2 - 1] + tp_sorted[n // 2]) / 2 if n % 2 == 0 else tp_sorted[n // 2]
+        fp_sorted = sorted(delta_ms_fp)
+        n = len(fp_sorted)
+        fp_median = (fp_sorted[n // 2 - 1] + fp_sorted[n // 2]) / 2 if n % 2 == 0 else fp_sorted[n // 2]
         learned_threshold = (tp_median + fp_median) / 2
 
     print(f"""

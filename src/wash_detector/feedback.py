@@ -55,23 +55,25 @@ class FeedbackStore:
     def _init_db(self) -> None:
         """Initialize the feedback database schema."""
         conn = sqlite3.connect(self.db_path)
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS feedback (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                alert_id TEXT NOT NULL,
-                detector TEXT NOT NULL,
-                verdict TEXT NOT NULL CHECK(verdict IN ('TP', 'FP', 'UNCERTAIN')),
-                timestamp_utc TEXT NOT NULL,
-                features_json TEXT NOT NULL,
-                notes TEXT,
-                created_at TEXT DEFAULT CURRENT_TIMESTAMP
-            )
-        """)
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_feedback_detector ON feedback(detector)")
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_feedback_verdict ON feedback(verdict)")
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_feedback_alert ON feedback(alert_id)")
-        conn.commit()
-        conn.close()
+        try:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS feedback (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    alert_id TEXT NOT NULL,
+                    detector TEXT NOT NULL,
+                    verdict TEXT NOT NULL CHECK(verdict IN ('TP', 'FP', 'UNCERTAIN')),
+                    timestamp_utc TEXT NOT NULL,
+                    features_json TEXT NOT NULL,
+                    notes TEXT,
+                    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+                )
+            """)
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_feedback_detector ON feedback(detector)")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_feedback_verdict ON feedback(verdict)")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_feedback_alert ON feedback(alert_id)")
+            conn.commit()
+        finally:
+            conn.close()
 
     def add_feedback(
         self,
@@ -83,75 +85,79 @@ class FeedbackStore:
     ) -> None:
         """Record feedback for an alert."""
         conn = sqlite3.connect(self.db_path)
-        conn.execute(
-            """
-            INSERT INTO feedback (alert_id, detector, verdict, timestamp_utc, features_json, notes)
-            VALUES (?, ?, ?, ?, ?, ?)
-            """,
-            (
-                alert_id,
-                detector,
-                verdict,
-                datetime.now(timezone.utc).isoformat(),
-                json.dumps(features),
-                notes,
+        try:
+            conn.execute(
+                """
+                INSERT INTO feedback (alert_id, detector, verdict, timestamp_utc, features_json, notes)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    alert_id,
+                    detector,
+                    verdict,
+                    datetime.now(timezone.utc).isoformat(),
+                    json.dumps(features),
+                    notes,
+                )
             )
-        )
-        conn.commit()
-        conn.close()
+            conn.commit()
+        finally:
+            conn.close()
         logger.info(f"Recorded {verdict} feedback for alert {alert_id}")
 
     def get_all_feedback(self) -> List[FeedbackEntry]:
         """Retrieve all feedback entries."""
         conn = sqlite3.connect(self.db_path)
-        cursor = conn.execute(
-            "SELECT alert_id, detector, verdict, timestamp_utc, features_json, notes FROM feedback"
-        )
-        entries = []
-        for row in cursor:
-            entries.append(FeedbackEntry(
-                alert_id=row[0],
-                detector=row[1],
-                verdict=row[2],
-                timestamp_utc=row[3],
-                features=json.loads(row[4]),
-                notes=row[5],
-            ))
-        conn.close()
+        try:
+            cursor = conn.execute(
+                "SELECT alert_id, detector, verdict, timestamp_utc, features_json, notes FROM feedback"
+            )
+            entries = []
+            for row in cursor:
+                entries.append(FeedbackEntry(
+                    alert_id=row[0],
+                    detector=row[1],
+                    verdict=row[2],
+                    timestamp_utc=row[3],
+                    features=json.loads(row[4]),
+                    notes=row[5],
+                ))
+        finally:
+            conn.close()
         return entries
 
     def get_stats(self) -> FeedbackStats:
         """Compute statistics from collected feedback."""
         conn = sqlite3.connect(self.db_path)
+        try:
+            # Count by detector and verdict
+            cursor = conn.execute("""
+                SELECT detector, verdict, COUNT(*) as cnt
+                FROM feedback
+                GROUP BY detector, verdict
+            """)
 
-        # Count by detector and verdict
-        cursor = conn.execute("""
-            SELECT detector, verdict, COUNT(*) as cnt
-            FROM feedback
-            GROUP BY detector, verdict
-        """)
+            by_detector: Dict[str, Dict[str, int]] = {}
+            for detector, verdict, count in cursor:
+                if detector not in by_detector:
+                    by_detector[detector] = {"TP": 0, "FP": 0, "UNCERTAIN": 0}
+                by_detector[detector][verdict] = count
 
-        by_detector: Dict[str, Dict[str, int]] = {}
-        for detector, verdict, count in cursor:
-            if detector not in by_detector:
-                by_detector[detector] = {"TP": 0, "FP": 0, "UNCERTAIN": 0}
-            by_detector[detector][verdict] = count
+            # Compute precision
+            precision_by_detector: Dict[str, float] = {}
+            for detector, counts in by_detector.items():
+                tp = counts.get("TP", 0)
+                fp = counts.get("FP", 0)
+                if tp + fp > 0:
+                    precision_by_detector[detector] = tp / (tp + fp)
+                else:
+                    precision_by_detector[detector] = 0.0
 
-        # Compute precision
-        precision_by_detector: Dict[str, float] = {}
-        for detector, counts in by_detector.items():
-            tp = counts.get("TP", 0)
-            fp = counts.get("FP", 0)
-            if tp + fp > 0:
-                precision_by_detector[detector] = tp / (tp + fp)
-            else:
-                precision_by_detector[detector] = 0.0
-
-        # Total count
-        cursor = conn.execute("SELECT COUNT(*) FROM feedback")
-        total = cursor.fetchone()[0]
-
-        conn.close()
+            # Total count
+            cursor = conn.execute("SELECT COUNT(*) FROM feedback")
+            total = cursor.fetchone()[0]
+        finally:
+            conn.close()
 
         # Feature importance (simple: average feature values for TP vs FP)
         feature_importance = self._compute_feature_importance()

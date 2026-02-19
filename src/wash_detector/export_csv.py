@@ -35,7 +35,7 @@ def export_alerts_csv(
     alerts: List[Dict[str, Any]],
     output_path: str | Path,
     day_name: str = "",
-    config: ExportConfig = None,
+    config: ExportConfig | None = None,
 ) -> int:
     """Export alerts to CSV with proper timestamp handling, pair IDs, and detector-specific metrics.
 

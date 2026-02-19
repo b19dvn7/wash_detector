@@ -4,8 +4,14 @@
 
 INTERVAL=${1:-5}
 LOOKBACK=${2:-30}
-DATA_DIR="/home/bigdan7/Documents/TRADING/DATA/OKX/btcusdt"
-PROJECT="/home/bigdan7/Projects/wash_detector"
+DATA_DIR="${DATA_DIR:-${3:-}}"
+PROJECT="$(cd "$(dirname "$0")" && pwd)"
+
+if [ -z "$DATA_DIR" ]; then
+    echo "Error: DATA_DIR not set. Usage: ./watch_live.sh [interval] [lookback] [data_dir]"
+    echo "  or: DATA_DIR=/path/to/data ./watch_live.sh"
+    exit 1
+fi
 NORM_DB="/tmp/wash_live_norm.db"
 CONFIG="$PROJECT/learning/tuned_config.json"
 export PYTHONPATH="$PROJECT/src"

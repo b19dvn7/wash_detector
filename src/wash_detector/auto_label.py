@@ -34,8 +34,9 @@ def auto_label_mirror_reversal(evidence: Dict) -> AutoLabelResult:
         return AutoLabelResult("FP", 0.90, f"Slow ({delta_ms/1000:.1f}s) = normal (user-learned)")
 
     if delta_ms > 2933:
-        # Gap zone (2934-2999ms): closer to TP max (2861ms) than FP min (3004ms)
-        return AutoLabelResult("TP", 0.70, f"Gap zone ({delta_ms}ms) - closer to TP boundary, labeled wash")
+        # Gap zone (2934-2999ms): between TP max (2861ms) and FP min (3004ms)
+        # Policy: label as TP with lower confidence since it's in the ambiguous range
+        return AutoLabelResult("TP", 0.70, f"Gap zone ({delta_ms}ms) - between TP/FP boundary, labeled wash")
 
     # === RULE 1: Ultra-fast is always suspicious ===
     if delta_ms < 100:
@@ -45,12 +46,8 @@ def auto_label_mirror_reversal(evidence: Dict) -> AutoLabelResult:
             return AutoLabelResult("TP", 0.90, f"Ultra-fast ({delta_ms}ms) = wash")
 
     # === RULE 2: Under user threshold = wash (user-learned) ===
-    # User labeled everything under 2933ms as TP
-    if delta_ms <= 2933:
-        return AutoLabelResult("TP", 0.85, f"Under 2.9s ({delta_ms}ms) = wash (user-learned)")
-
-    # Anything else is genuinely uncertain
-    return AutoLabelResult("UNCERTAIN", 0.50, f"Borderline: {delta_ms}ms, {amount_gap:.2f}% diff")
+    # User labeled everything under 2933ms as TP (covers all remaining delta_ms <= 2933)
+    return AutoLabelResult("TP", 0.85, f"Under 2.9s ({delta_ms}ms) = wash (user-learned)")
 
 
 def auto_label_balanced_churn(evidence: Dict) -> AutoLabelResult:

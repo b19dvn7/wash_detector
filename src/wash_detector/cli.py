@@ -144,8 +144,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     batch.add_argument(
         "--data-dir",
-        default="/home/bigdan7/Documents/TRADING/DATA/TABLET_TRADING_DATA",
-        help="Directory containing btcusdt_YYYYMMDD.db files",
+        required=True,
+        help="Directory containing btcusdt_YYYYMMDD.db files (required)",
     )
     batch.add_argument(
         "--artifacts-dir",
