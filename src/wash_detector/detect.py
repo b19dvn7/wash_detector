@@ -599,21 +599,171 @@ def _balanced_churn_alerts(
     return alerts
 
 
+def _compute_near_touch_depth(
+    bids: List[List[float]],
+    asks: List[List[float]],
+    bps_window: float = 5.0,
+) -> tuple[float, float, float]:
+    """
+    Compute depth within X bps of best bid/ask.
+
+    Args:
+        bids: [[price, size], ...] sorted descending
+        asks: [[price, size], ...] sorted ascending
+        bps_window: basis points window (default 5 bps = 0.05%)
+
+    Returns:
+        (bid_depth_usd, ask_depth_usd, near_touch_imbalance)
+    """
+    if not bids or not asks:
+        return 0.0, 0.0, 0.0
+
+    best_bid = bids[0][0]
+    best_ask = asks[0][0]
+
+    # Depth within bps_window of best
+    bid_depth = sum(
+        price * size
+        for price, size in bids
+        if price >= best_bid * (1 - bps_window / 10000)
+    )
+
+    ask_depth = sum(
+        price * size
+        for price, size in asks
+        if price <= best_ask * (1 + bps_window / 10000)
+    )
+
+    # Imbalance: -1 (all ask) to +1 (all bid)
+    total_depth = bid_depth + ask_depth
+    if total_depth > 0:
+        imbalance = (bid_depth - ask_depth) / total_depth
+    else:
+        imbalance = 0.0
+
+    return bid_depth, ask_depth, imbalance
+
+
+def _load_orderbook_snapshots(
+    db_path: str | Path,
+    start_ms: int,
+    end_ms: int,
+) -> List[tuple[int, List[List[float]], List[List[float]]]]:
+    """
+    Load orderbook snapshots within time window.
+
+    Returns:
+        [(timestamp_ms, bids, asks), ...]
+    """
+    import json
+    import sqlite3
+
+    conn = sqlite3.connect(db_path)
+    try:
+        rows = conn.execute(
+            """
+            SELECT timestamp, bids, asks
+            FROM orderbooks
+            WHERE timestamp >= ? AND timestamp <= ?
+            ORDER BY timestamp
+            """,
+            (start_ms, end_ms),
+        ).fetchall()
+
+        snapshots = []
+        for ts, bids_json, asks_json in rows:
+            try:
+                bids = json.loads(bids_json)
+                asks = json.loads(asks_json)
+                snapshots.append((ts, bids, asks))
+            except (json.JSONDecodeError, ValueError):
+                continue
+
+        return snapshots
+    finally:
+        conn.close()
+
+
+def _detect_ramp_yank(
+    snapshots: List[tuple[int, float, float]],  # [(ts, bid_depth, ask_depth), ...]
+    window_trades_notional: float,
+    min_ramp_ratio: float = 2.0,  # Depth must grow by 2x
+    min_yank_ratio: float = 0.4,  # Depth must drop to <40% of peak
+) -> tuple[bool, float, float]:
+    """
+    Detect depth ramp → yank pattern without matching trade volume.
+
+    Returns:
+        (is_spoofing, peak_depth, final_depth)
+    """
+    if len(snapshots) < 3:
+        return False, 0.0, 0.0
+
+    # Extract max depth per side
+    depths = [(ts, max(bid, ask)) for ts, bid, ask in snapshots]
+
+    if not depths:
+        return False, 0.0, 0.0
+
+    # Find peak depth
+    peak_depth = max(d for _, d in depths)
+    initial_depth = depths[0][1]
+    final_depth = depths[-1][1]
+
+    # Ramp: depth grows significantly
+    ramp = peak_depth >= initial_depth * min_ramp_ratio
+
+    # Yank: depth collapses from peak
+    yank = final_depth <= peak_depth * min_yank_ratio
+
+    # No matching volume: traded notional << peak depth
+    # (If traders consumed the depth, notional would be ~peak_depth)
+    no_matched_volume = window_trades_notional < peak_depth * 0.3
+
+    is_spoofing = ramp and yank and no_matched_volume
+
+    return is_spoofing, peak_depth, final_depth
+
+
 def _spoofing_alerts(
     trades: Sequence[TradeRow],
     cfg: DetectorConfig,
+    normalized_db_path: str | Path,
 ) -> List[Alert]:
     """
     Detect spoofing patterns via orderbook manipulation.
 
     Monitors for rapid asymmetric depth changes and spread compression
     indicating fake liquidity that disappears before execution.
+
+    Enhanced with near-touch depth ramp/yank detection from raw orderbook ladders.
     """
     alerts: List[Alert] = []
     scfg = cfg.spoofing
 
     if len(trades) < 2:
         return alerts
+
+    # Get source tablet DB path for orderbook data
+    import sqlite3
+    conn = sqlite3.connect(normalized_db_path)
+    try:
+        source_db_row = conn.execute("SELECT value FROM ingest_meta WHERE key = 'source_db'").fetchone()
+        if not source_db_row:
+            # No source DB metadata - skip orderbook-based checks
+            source_db_path = None
+        else:
+            source_db_path = source_db_row[0]
+    finally:
+        conn.close()
+
+    # Pre-load all orderbook snapshots for efficiency
+    orderbook_snapshots = {}  # timestamp_ms -> (bids, asks)
+    if source_db_path and Path(source_db_path).exists():
+        min_ts = trades[0].timestamp_ms
+        max_ts = trades[-1].timestamp_ms
+        all_snapshots = _load_orderbook_snapshots(source_db_path, min_ts, max_ts)
+        orderbook_snapshots = {ts: (bids, asks) for ts, bids, asks in all_snapshots}
 
     left = 0
     cooldown_until = -1
@@ -641,9 +791,10 @@ def _spoofing_alerts(
             continue
 
         # Detect rapid asymmetric depth changes
+        # Note: depth_ratio signals can cross zero (-0.1 to +0.1), so we use range (max-min), not ratio
         depth_5_min = min(depth_ratio_5_vals)
         depth_5_max = max(depth_ratio_5_vals)
-        depth_5_swing = depth_5_max - depth_5_min
+        depth_5_range = depth_5_max - depth_5_min  # Renamed from swing to range (it's a difference)
 
         # Detect strong directional pressure
         avg_pressure = sum(abs(x) for x in orderbook_pressure_vals) / len(orderbook_pressure_vals)
@@ -651,11 +802,51 @@ def _spoofing_alerts(
         # Detect spread compression spikes
         max_compression = max(spread_compression_vals) if spread_compression_vals else 0.0
 
-        # Spoofing fingerprint: large depth swings + directional pressure
-        if (depth_5_swing >= scfg.min_depth_ratio_change and
+        # Spoofing fingerprint: large depth changes + directional pressure
+        if (depth_5_range >= scfg.min_depth_ratio_change and
             avg_pressure >= scfg.min_orderbook_pressure):
 
+            # Enhanced gate: check for ramp/yank pattern in raw orderbook ladders
+            is_ramp_yank = False
+            peak_depth = 0.0
+            final_depth = 0.0
+
+            if orderbook_snapshots:
+                # Get orderbook snapshots within window
+                window_start_ms = window[0].timestamp_ms
+                window_end_ms = window[-1].timestamp_ms
+
+                # Compute near-touch depth for each snapshot in window
+                depth_timeline = []
+                for ts in sorted(orderbook_snapshots.keys()):
+                    if window_start_ms <= ts <= window_end_ms:
+                        bids, asks = orderbook_snapshots[ts]
+                        bid_depth, ask_depth, imbalance = _compute_near_touch_depth(bids, asks, bps_window=5.0)
+                        depth_timeline.append((ts, bid_depth, ask_depth))
+
+                # Check for ramp→yank pattern
+                if depth_timeline:
+                    window_notional = sum(tr.notional for tr in window)
+                    is_ramp_yank, peak_depth, final_depth = _detect_ramp_yank(
+                        depth_timeline,
+                        window_notional,
+                        min_ramp_ratio=2.0,
+                        min_yank_ratio=0.4,
+                    )
+
+            # Require either:
+            # 1. Ramp/yank pattern confirmed (high confidence)
+            # 2. Very strong microstructure signals (pressure >=0.85 + range >=1.75)
+            strong_signals = avg_pressure >= 0.85 and depth_5_range >= 1.75
+
+            if not (is_ramp_yank or strong_signals):
+                continue  # Skip this alert
+
             risk = scfg.base_risk_points
+
+            # Bonus for confirmed ramp/yank
+            if is_ramp_yank:
+                risk += 5
 
             # Bonus for very high one-sided pressure (strong manipulation signal)
             if avg_pressure >= 0.85:
@@ -663,19 +854,19 @@ def _spoofing_alerts(
             elif avg_pressure >= 0.75:
                 risk += 3
 
-            # Bonus for extreme depth swings (large fake liquidity)
-            if depth_5_swing >= 1.75:
+            # Bonus for extreme depth ranges (large fake liquidity)
+            if depth_5_range >= 1.75:
                 risk += 3
-            elif depth_5_swing >= 1.5:
+            elif depth_5_range >= 1.5:
                 risk += 2
 
             # Bonus for spread compression (fake tightening)
             if max_compression >= scfg.spread_compression_threshold:
                 risk += scfg.compression_bonus
 
-            depth_20_swing = None
+            depth_20_range = None
             if depth_ratio_20_vals:
-                depth_20_swing = max(depth_ratio_20_vals) - min(depth_ratio_20_vals)
+                depth_20_range = max(depth_ratio_20_vals) - min(depth_ratio_20_vals)
 
             alerts.append(
                 Alert(
@@ -688,10 +879,13 @@ def _spoofing_alerts(
                         "anchor_trade_id": t.id,
                         "window_trade_count": len(window),
                         "window_seconds": (window[-1].timestamp_ms - window[0].timestamp_ms) / 1000.0,
-                        "depth_5_swing": round(depth_5_swing, 6),
-                        "depth_20_swing": None if depth_20_swing is None else round(depth_20_swing, 6),
+                        "depth_5_range": round(depth_5_range, 6),
+                        "depth_20_range": None if depth_20_range is None else round(depth_20_range, 6),
                         "avg_orderbook_pressure": round(avg_pressure, 6),
                         "max_spread_compression": round(max_compression, 6),
+                        "is_ramp_yank": is_ramp_yank,
+                        "peak_depth_usd": round(peak_depth, 2) if peak_depth > 0 else None,
+                        "final_depth_usd": round(final_depth, 2) if final_depth > 0 else None,
                     },
                 )
             )
@@ -821,7 +1015,7 @@ def detect_suspicious_patterns(
 
     report.alerts.extend(_mirror_reversal_alerts(trades, config))
     report.alerts.extend(_layering_cluster_alerts(trades, config))
-    report.alerts.extend(_spoofing_alerts(trades, config))
+    report.alerts.extend(_spoofing_alerts(trades, config, normalized_db_path))
     report.alerts.extend(_quote_stuffing_alerts(trades, config))
     report.alerts.extend(_balanced_churn_alerts(trades, config))
 
