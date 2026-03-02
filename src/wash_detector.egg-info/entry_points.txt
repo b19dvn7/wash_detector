@@ -1,0 +1,2 @@
+[console_scripts]
+wash-detector = wash_detector.cli:main
